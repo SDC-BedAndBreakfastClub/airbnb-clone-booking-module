@@ -1,13 +1,17 @@
+var mongoose = require('mongoose');
 var location = require('./Location.js');
+var db = require('./index.js');
 var faker = require('faker');
 
-for (var i = 0; i < 100; i++) {
+var fakeDataset = [];
 
-	location.Listing.create({
+for (var i = 0; i < 100; i++) {
+	var mockData = {
 		pricing: faker.commerce.price(),
 		average_review: (Math.random() * 5),
 		total_reviews: (Math.floor(Math.random() * 200))
-	}, function(err, listing) {
-		if (err) throw err;
 	}
+	fakeDataset.push(mockData);
 }
+
+location.Listing.create(fakeDataset);
