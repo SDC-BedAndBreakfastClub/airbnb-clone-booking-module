@@ -19,14 +19,14 @@ class App extends React.Component {
 		if (!this.state.clicked) {
 			return (
 				<div>
-					<p onClick={this.handleClick.bind(this)}>click me bro</p>
+					<p onClick={this.handleClick.bind(this)}>click me</p>
 					<input type="date" id="start" />
 					<input type="date" id="end" />
 				</div>
 			)
 		} else {
 			return (
-				<div><p>Nice Click bro</p></div>
+				<div><p>Nice Click</p></div>
 			)
 		}
 	}
