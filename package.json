@@ -1,6 +1,6 @@
 {
   "name": "airbnb-clone-booking-module",
-  "description": "airbnb-clone-booking-module",
+  "description": "Booking module for an AirBnB clone web app",
   "author": "Jay",
   "license": "ISC",
   "engines": {
@@ -13,8 +13,6 @@
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
-    "eslint": "^5.7.0",
-    "eslint-config-airbnb": "^17.1.0",
     "express": "^4.16.4",
     "jest": "^23.6.0",
     "mongo": "^0.1.0",
@@ -39,9 +37,6 @@
   },
   "version": "1.0.0",
   "main": ".eslintrc.js",
-  "directories": {
-    "example": "example"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BedandBreakfastClub/airbnb-clone-booking-module.git"
