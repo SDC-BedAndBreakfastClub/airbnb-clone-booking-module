@@ -1,17 +1,47 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
-  "license": "",
+  "name": "airbnb-clone-booking-module",
+  "description": "airbnb-clone-booking-module",
+  "author": "Jay",
+  "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
+    "test": "jest",
+    "react-dev": "webpack -d --watch",
+    "seed": "node database/seed.js"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "express": "^4.16.4",
+    "jest": "^23.6.0",
+    "mongo": "^0.1.0",
+    "nodemon": "^1.18.4",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-test-renderer": "^16.6.0",
+    "webpack": "^4.23.0"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
-  }
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "webpack": "^4.23.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "version": "1.0.0",
+  "main": ".eslintrc.js",
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BedandBreakfastClub/airbnb-clone-booking-module.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BedandBreakfastClub/airbnb-clone-booking-module/issues"
+  },
+  "homepage": "https://github.com/BedandBreakfastClub/airbnb-clone-booking-module#readme"
 }
