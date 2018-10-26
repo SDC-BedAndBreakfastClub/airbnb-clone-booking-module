@@ -14,4 +14,4 @@ for (var i = 0; i < 100; i++) {
 	fakeDataset.push(mockData);
 }
 
-location.Listing.create(fakeDataset);
+location.Listing.create(fakeDataset).then(() => db.close());
