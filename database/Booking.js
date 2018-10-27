@@ -1,10 +1,12 @@
-var bookingSchema = new mongoose.Schema({
-	id: Number,
-	check_in: Date,
-	check_out: Date,
-	guests: Number,
-	booking_location: String,
-	user: String
-})
+const mongoose = require('mongoose');
 
-exports.Booking = mongoose.model('Booking', bookingSchema)
+const bookingSchema = new mongoose.Schema({
+  id: Number,
+  check_in: Date,
+  check_out: Date,
+  guests: Number,
+  booking_location: String,
+  user: String,
+});
+
+exports.Booking = mongoose.model('Booking', bookingSchema);

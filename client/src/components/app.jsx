@@ -1,4 +1,5 @@
 import React from 'react';
+import Guest from './guest.jsx';
 
 class App extends React.Component {
 	constructor(props) {
@@ -24,6 +25,7 @@ class App extends React.Component {
 					<p onClick={this.handleClick.bind(this)}>click me</p>
 					<input type="date" id="start" />
 					<input type="date" id="end" />
+					<Guest />
 				</div>
 			)
 		} else {
