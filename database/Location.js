@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const connection = require('./index.js');
 
 const locationSchema = new mongoose.Schema({
   id: Number,
@@ -7,4 +8,4 @@ const locationSchema = new mongoose.Schema({
   total_reviews: Number,
 });
 
-exports.Listing = mongoose.model('Listing', locationSchema);
+module.exports = connection.model('Listing', locationSchema);

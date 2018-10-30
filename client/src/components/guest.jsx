@@ -6,6 +6,9 @@ class Guest extends React.Component {
 
     this.state = {
       drop: false,
+      adults: 0,
+      children: 0,
+      infants: 0,
     };
 
     this.handleDropMenu = this.handleDropMenu.bind(this);
