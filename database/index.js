@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
-const db = mongoose.connect('mongodb://localhost:27017/booking');
+mongoose.connect('mongodb://localhost:27017/booking');
+
+var db = mongoose.connection;
 
 module.exports = db;
