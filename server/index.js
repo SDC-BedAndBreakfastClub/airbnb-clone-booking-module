@@ -1,10 +1,12 @@
 const express = require('express');
 const db = require('../database/index.js');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = process.env.PORT || 3004;
 
 app.use(express.static('client/dist'));
+app.use(bodyParser);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
