@@ -17,14 +17,14 @@ class Guest extends React.Component {
 
     this.setState({
       drop: true,
-    }, () => document.addEventListener('click', this.handleClose));
+    }, () => document.addEventListener('click', this.handleCloseMenu));
   }
 
   handleCloseMenu(event) {
     if (!this.menu.contains(event.target)) {
       this.setState({
         drop: false,
-      }, () => document.removeEventListener('click', this.handleClose));
+      }, () => document.removeEventListener('click', this.handleCloseMenu));
     }
   }
 
@@ -34,7 +34,7 @@ class Guest extends React.Component {
     return (
       <div>
         <h1>Booking Button</h1>
-        <input value="Book" type="button" onClick={this.handleDrop} />
+        <input value="Book" type="button" onClick={this.handleDropMenu} />
         { drop ? (
           <div ref={ele => this.menu = ele}>
             <p>Adults</p>
