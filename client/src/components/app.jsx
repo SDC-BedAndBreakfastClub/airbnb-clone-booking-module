@@ -1,39 +1,39 @@
 import React from 'react';
+import Guest from './guest.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      clicked: false,
+      start: null,
+      end: null,
     };
+
+    this.handleStartDate = this.handleStartDate.bind(this);
+    this.handleEndDate = this.handleEndDate.bind(this);
   }
 
-  handleClick() {
+  handleStartDate(event) {
     this.setState({
-      clicked: true,
+      start: event.target.value,
     });
   }
 
-  // conditional rendering
+  handleEndDate(event) {
+    this.setState({
+      end: event.target.value,
+    });
+  }
 
   render() {
-    const { clicked } = this.state;
-    if (!clicked) {
-      return (
-        <div>
-          <input type="button" onClick={this.handleClick.bind(this)} />
-          <input type="date" id="start" />
-          <input type="date" id="end" />
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <input type="button" />
-        </div>
-      );
-    }
+    return (
+      <div>
+        <input type="date" id="start" onChange={e => this.handleStartDate(e)} />
+        <input type="date" id="end" onChange={e => this.handleEndDate(e)} />
+        <Guest />
+      </div>
+    );
   }
 }
 
