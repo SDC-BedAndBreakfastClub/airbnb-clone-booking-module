@@ -1,6 +1,7 @@
-var express = require('express');
-var app = express();
-var port = process.env.PORT || 3004;
+const express = require('express');
+
+const app = express();
+const port = process.env.PORT || 3004;
 
 app.use(express.static('client/dist'));
 
