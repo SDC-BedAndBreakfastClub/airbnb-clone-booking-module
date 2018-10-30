@@ -21,10 +21,18 @@ class App extends React.Component {
     });
   }
 
+
   handleEndDate(event) {
     this.setState({
       end: event.target.value,
     });
+  }
+
+  handleGetRequest() {
+    $.ajax({
+      method: 'GET',
+      url: '/api/rooms/:listingId/booking',
+    }).done(info => console.log(info));
   }
 
   render() {
