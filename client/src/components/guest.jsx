@@ -13,6 +13,8 @@ class Guest extends React.Component {
 
     this.handleDropMenu = this.handleDropMenu.bind(this);
     this.handleCloseMenu = this.handleCloseMenu.bind(this);
+    this.handleIncrement = this.handleIncrement.bind(this);
+    this.handleDecrement = this.handleDecrement.bind(this);
   }
 
   handleDropMenu(event) {
@@ -31,6 +33,14 @@ class Guest extends React.Component {
     }
   }
 
+  handleIncrement(guestType) {
+    this.state[guestType] += 1;
+  }
+
+  handleDecrement(guestType) {
+    this.state[guestType] -= 1;
+  }
+
   render() {
     const { drop } = this.state;
 
@@ -41,14 +51,14 @@ class Guest extends React.Component {
         { drop ? (
           <div ref={ele => this.menu = ele}>
             <p>Adults</p>
-            <input value="-" type="button" />
-            <input value="+" type="button" />
+            <input value="-" type="button" onClick={() => this.handleDecrement('adults')} />
+            <input value="+" type="button" onClick={() => this.handleIncrement('adults')} />
             <p>Children</p>
-            <input value="-" type="button" />
-            <input value="+" type="button" />
+            <input value="-" type="button" onClick={() => this.handleDecrement('children')} />
+            <input value="+" type="button" onClick={() => this.handleIncrement('children')} />
             <p>Infants</p>
-            <input value="-" type="button" />
-            <input value="+" type="button" />
+            <input value="-" type="button" onClick={() => this.handleDecrement('infants')} />
+            <input value="+" type="button" onClick={() => this.handleIncrement('infants')} />
           </div>) : null }
       </div>
     );
