@@ -1,38 +1,40 @@
 import React from 'react';
-import Guest from './guest.jsx';
 
 class App extends React.Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			clicked: false
-		}
-	}
+    this.state = {
+      clicked: false,
+    };
+  }
 
-	handleClick() {
-		this.setState({
-			clicked: true
-		})
-	}
+  handleClick() {
+    this.setState({
+      clicked: true,
+    });
+  }
 
-	// conditional rendering
+  // conditional rendering
 
-	render() {
-		if (!this.state.clicked) {
-			return (
-				<div>
-					<input type="date" id="start" />
-					<input type="date" id="end" />
-					<Guest />
-				</div>
-			)
-		} else {
-			return (
-				<div><p>Nice Click</p></div>
-			)
-		}
-	}
+  render() {
+    const { clicked } = this.state;
+    if (!clicked) {
+      return (
+        <div>
+          <input type="button" onClick={this.handleClick.bind(this)} />
+          <input type="date" id="start" />
+          <input type="date" id="end" />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <input type="button" />
+        </div>
+      );
+    }
+  }
 }
 
 export default App;
