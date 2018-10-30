@@ -1,6 +1,6 @@
 import React from 'react';
-import Guest from './guest.jsx';
 import $ from 'jquery';
+import Guest from './guest.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class App extends React.Component {
 
     this.handleStartDate = this.handleStartDate.bind(this);
     this.handleEndDate = this.handleEndDate.bind(this);
+    this.handleGetRequest = this.handleGetRequest.bind(this);
   }
 
   handleStartDate(event) {
@@ -33,6 +34,10 @@ class App extends React.Component {
       method: 'GET',
       url: '/api/rooms/:listingId/booking',
     }).done(info => console.log(info));
+  }
+
+  componentDidMount() {
+    this.handleGetRequest();
   }
 
   render() {

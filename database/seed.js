@@ -15,4 +15,4 @@ for (let i = 0; i < 100; i += 1) {
 }
 
 
-location.Listing.create(fakeDataset).then(() => db.close());
+location.create(fakeDataset).then(() => db.close());
