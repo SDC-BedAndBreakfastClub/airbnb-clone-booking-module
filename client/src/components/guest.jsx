@@ -8,8 +8,8 @@ class Guest extends React.Component {
       drop: false,
     };
 
-    this.handleDrop = this.handleDropMenu.bind(this);
-    this.handleClose = this.handleCloseMenu.bind(this);
+    this.handleDropMenu = this.handleDropMenu.bind(this);
+    this.handleCloseMenu = this.handleCloseMenu.bind(this);
   }
 
   handleDropMenu(event) {
