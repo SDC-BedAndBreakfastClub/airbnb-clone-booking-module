@@ -7,6 +7,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      data: null,
       start: null,
       end: null,
     };
@@ -33,7 +34,10 @@ class App extends React.Component {
     $.ajax({
       method: 'GET',
       url: '/api/rooms/:listingId/booking',
-    }).done(info => console.log(info));
+      contentType: 'application/json',
+      success: data => this.setState({ data: data }),
+      error: err => console.error('error ', err),
+    });
   }
 
   componentDidMount() {
