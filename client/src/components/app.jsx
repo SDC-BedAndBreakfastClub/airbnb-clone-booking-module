@@ -1,5 +1,6 @@
 import React from 'react';
 import Guest from './guest.jsx';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
