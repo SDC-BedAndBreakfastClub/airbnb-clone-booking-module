@@ -12,6 +12,6 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.get('/api/rooms/:listingId/booking', (req, res) => {
   db.listings.find({ _id: req.params.listingId })
-    .then(info => res.json(info))
+    .done(info => res.json(info))
     .error(() => res.end());
 });
