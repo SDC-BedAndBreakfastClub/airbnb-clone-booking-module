@@ -1,6 +1,5 @@
-var mongoose = require('mongoose');
-var listing = require('./seed.js')
+const mongoose = require('mongoose');
 
-var db = mongoose.connect('mongodb://localhost:27017/booking');
+const db = mongoose.connect('mongodb://localhost:27017/booking');
 
 module.exports = db;
