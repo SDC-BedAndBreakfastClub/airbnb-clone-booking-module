@@ -22,7 +22,6 @@ class App extends React.Component {
 		if (!this.state.clicked) {
 			return (
 				<div>
-					<p onClick={this.handleClick.bind(this)}>click me</p>
 					<input type="date" id="start" />
 					<input type="date" id="end" />
 					<Guest />

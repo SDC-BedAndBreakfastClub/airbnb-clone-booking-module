@@ -1,11 +1,10 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var locationSchema = new mongoose.Schema({
-	id: Number,
-	pricing: Number,
-	average_review: Number,
-	total_reviews: Number
-})
+const locationSchema = new mongoose.Schema({
+  id: Number,
+  pricing: Number,
+  average_review: Number,
+  total_reviews: Number,
+});
 
-exports.Listing = mongoose.model('Listing', locationSchema)
-
+exports.Listing = mongoose.model('Listing', locationSchema);
