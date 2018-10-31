@@ -1,4 +1,25 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  .booking-button {
+    background-color: red;
+    border: none;
+    color: #ffffff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 800;
+    margin: 0px;
+    cursor: pointer;
+    word-wrap: break-word;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: normal !important;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  }
+`;
 
 class Guest extends React.Component {
   constructor(props) {
@@ -35,6 +56,7 @@ class Guest extends React.Component {
 
   handleIncrement(guestType) {
     this.state[guestType] += 1;
+    console.log(this.state);
   }
 
   handleDecrement(guestType) {
@@ -45,22 +67,23 @@ class Guest extends React.Component {
     const { drop } = this.state;
 
     return (
-      <div>
-        <h1>Booking Button</h1>
-        <input value="Book" type="button" onClick={this.handleDropMenu} />
-        { drop ? (
-          <div ref={ele => this.menu = ele}>
-            <p>Adults</p>
-            <input value="-" type="button" onClick={() => this.handleDecrement('adults')} />
-            <input value="+" type="button" onClick={() => this.handleIncrement('adults')} />
-            <p>Children</p>
-            <input value="-" type="button" onClick={() => this.handleDecrement('children')} />
-            <input value="+" type="button" onClick={() => this.handleIncrement('children')} />
-            <p>Infants</p>
-            <input value="-" type="button" onClick={() => this.handleDecrement('infants')} />
-            <input value="+" type="button" onClick={() => this.handleIncrement('infants')} />
-          </div>) : null }
-      </div>
+        <Wrapper>
+          <div>
+            <input className="booking-button" value="Book" type="button" onClick={this.handleDropMenu} />
+            { drop ? (
+            <div ref={ele => this.menu = ele}>
+              <p>Adults</p>
+              <input value="-" type="button" onClick={() => this.handleDecrement('adults')} />
+              <input value="+" type="button" onClick={() => this.handleIncrement('adults')} />
+              <p>Children</p>
+              <input value="-" type="button" onClick={() => this.handleDecrement('children')} />
+              <input value="+" type="button" onClick={() => this.handleIncrement('children')} />
+              <p>Infants</p>
+              <input value="-" type="button" onClick={() => this.handleDecrement('infants')} />
+              <input value="+" type="button" onClick={() => this.handleIncrement('infants')} />
+            </div>) : null }
+          </div>
+        </Wrapper>
     );
   }
 }
