@@ -16,6 +16,9 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, '/client/dist'),
