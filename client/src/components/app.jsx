@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import Guest from './guest.jsx';
+import Calendar from './calendar.jsx';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
@@ -53,8 +54,8 @@ class App extends React.Component {
     return (
       <div>
         <Wrapper>
-          <input className="calendar" type="date" id="start" onChange={e => this.handleStartDate(e)} />
-          <input className="calendar" type="date" id="end" onChange={e => this.handleEndDate(e)} />
+          <Calendar />
+          <Calendar />
         </Wrapper>
         <Guest />
       </div>

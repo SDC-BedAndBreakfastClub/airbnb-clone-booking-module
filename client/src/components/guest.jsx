@@ -17,7 +17,14 @@ const Wrapper = styled.div`
     font-size: 16px;
     line-height: 22px;
     letter-spacing: normal !important;
-    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+    border-radius: 10px;
+  }
+  .button-plus {
+    border-radius: 100%;
+  }
+  .button-minus {
+    border-radius: 100%;
   }
 `;
 
@@ -73,14 +80,14 @@ class Guest extends React.Component {
             { drop ? (
             <div ref={ele => this.menu = ele}>
               <p>Adults</p>
-              <input value="-" type="button" onClick={() => this.handleDecrement('adults')} />
-              <input value="+" type="button" onClick={() => this.handleIncrement('adults')} />
+              <input className="button-plus" value="-" type="button" onClick={() => this.handleDecrement('adults')} />
+              <input className="button-minus" value="+" type="button" onClick={() => this.handleIncrement('adults')} />
               <p>Children</p>
-              <input value="-" type="button" onClick={() => this.handleDecrement('children')} />
-              <input value="+" type="button" onClick={() => this.handleIncrement('children')} />
+              <input className="button-plus" value="-" type="button" onClick={() => this.handleDecrement('children')} />
+              <input className="button-minus" value="+" type="button" onClick={() => this.handleIncrement('children')} />
               <p>Infants</p>
-              <input value="-" type="button" onClick={() => this.handleDecrement('infants')} />
-              <input value="+" type="button" onClick={() => this.handleIncrement('infants')} />
+              <input className="button-plus" value="-" type="button" onClick={() => this.handleDecrement('infants')} />
+              <input className="button-minus" value="+" type="button" onClick={() => this.handleIncrement('infants')} />
             </div>) : null }
           </div>
         </Wrapper>
