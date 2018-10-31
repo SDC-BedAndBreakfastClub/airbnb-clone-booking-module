@@ -6,6 +6,7 @@ const Wrapper = styled.section`
   .calendar-header {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
   }
   .month {
     display: grid;
@@ -13,11 +14,18 @@ const Wrapper = styled.section`
     padding: 10px;
   }
   .day {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(125, 255, 255, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.8);
     padding: 20px;
     font-size: 15px;
     text-align: center;
+  }
+  .names {
+   background-color: white;
+  }
+  .change-month {
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.8);
   }
 `;
 
@@ -70,7 +78,7 @@ class Calendar extends React.Component {
     let days = [];
 
     for (let i = 0; i < 7; i += 1) {
-      days.push(<div className="day names">{dateFns.format(dateFns.addDays(day, i), 'dd') + ' '}</div>);
+      days.push(<div className="day names"><b>{dateFns.format(dateFns.addDays(day, i), 'dd')}</b></div>);
     }
 
     month.push(days);
@@ -78,7 +86,7 @@ class Calendar extends React.Component {
     while (day <= endOfWeek) {
       let week = [];
       for (let i = 0; i < 7; i += 1) {
-        week.push(<div className="day dates">{dateFns.format(dateFns.addDays(day, i), 'D') + ' '}</div>);
+        week.push(<div className="day dates">{dateFns.format(dateFns.addDays(day, i), 'D')}</div>);
       }
       day = dateFns.addDays(day, 7);
       month.push(week);
@@ -94,9 +102,9 @@ class Calendar extends React.Component {
       <div>
         <Wrapper>
           <div className="calendar-header">
-            <input type="button" onClick={() => this.prevMonth()} />
+            <a className="change-month" onClick={() => this.prevMonth()}>&laquo; </a>
             {this.renderHeader()}
-            <input type="button" onClick={() => this.nextMonth()} />
+            <a className="change-month" onClick={() => this.nextMonth()}> &raquo;</a>
           </div>
           {this.renderDates()}
         </Wrapper>

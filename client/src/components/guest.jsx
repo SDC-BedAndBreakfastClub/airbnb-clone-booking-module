@@ -19,6 +19,7 @@ const Wrapper = styled.div`
     letter-spacing: normal !important;
     font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
     border-radius: 10px;
+    width: 250px;
   }
   .button-plus {
     border-radius: 100%;
