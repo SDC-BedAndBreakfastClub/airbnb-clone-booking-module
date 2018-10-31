@@ -3,17 +3,21 @@ import dateFns from 'date-fns';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
-  .calendar {
+  .calendar-header {
     display: flex;
     flex-direction: row;
   }
-  .calendar-body {
-    display: flex;
-    flex-direction: row;
+  .month {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    padding: 10px;
   }
-  .week {
-    display: flex;
-    justify-content: space-evenly;
+  .day {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 15px;
+    text-align: center;
   }
 `;
 
@@ -36,7 +40,7 @@ class Calendar extends React.Component {
     const { currentMonth } = this.state;
 
     return (
-      <p>{dateFns.format(currentMonth, 'MMMM YYYY')}</p>
+      <div>{dateFns.format(currentMonth, 'MMMM YYYY')}</div>
     );
   }
 
@@ -66,7 +70,7 @@ class Calendar extends React.Component {
     let days = [];
 
     for (let i = 0; i < 7; i += 1) {
-      days.push(<span>{dateFns.format(dateFns.addDays(day, i), 'dd') + ' '}</span>);
+      days.push(<div className="day names">{dateFns.format(dateFns.addDays(day, i), 'dd') + ' '}</div>);
     }
 
     month.push(days);
@@ -74,10 +78,10 @@ class Calendar extends React.Component {
     while (day <= endOfWeek) {
       let week = [];
       for (let i = 0; i < 7; i += 1) {
-        week.push(<span className="day dates">{dateFns.format(dateFns.addDays(day, i), 'D') + ' '}</span>);
+        week.push(<div className="day dates">{dateFns.format(dateFns.addDays(day, i), 'D') + ' '}</div>);
       }
       day = dateFns.addDays(day, 7);
-      month.push(<div className="week">{week}</div>);
+      month.push(week);
     }
 
     return (
@@ -89,14 +93,12 @@ class Calendar extends React.Component {
     return (
       <div>
         <Wrapper>
-          <div className="calendar header">
+          <div className="calendar-header">
             <input type="button" onClick={() => this.prevMonth()} />
             {this.renderHeader()}
             <input type="button" onClick={() => this.nextMonth()} />
           </div>
-          <div className="calendar-body">
-            {this.renderDates()}
-          </div>
+          {this.renderDates()}
         </Wrapper>
       </div>
     );
