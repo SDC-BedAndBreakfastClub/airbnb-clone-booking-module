@@ -5,7 +5,10 @@ import Calendar from './calendar.jsx';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
-  background: papayawhip;
+  .calendars {
+    display: flex;
+    flex-direction: row;
+  }
 `;
 
 class App extends React.Component {
@@ -54,8 +57,10 @@ class App extends React.Component {
     return (
       <div>
         <Wrapper>
-          <Calendar />
-          <Calendar />
+          <div className="calendars">
+            <Calendar />
+            <Calendar />
+          </div>
         </Wrapper>
         <Guest />
       </div>

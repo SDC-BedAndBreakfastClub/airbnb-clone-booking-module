@@ -6,10 +6,10 @@ const Wrapper = styled.section`
   .calendar-header {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
   .month {
-    display: grid;
+    display: inline-grid;
     grid-template-columns: auto auto auto auto auto auto auto;
     padding: 10px;
   }
