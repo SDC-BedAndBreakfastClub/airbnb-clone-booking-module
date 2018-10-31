@@ -5,7 +5,11 @@ const db = require('./index.js');
 
 const fakeDataset = [];
 
-for (let i = 0; i < 100; i += 1) {
+fakeDataset.push({
+  _id: '5bd91f697190430ef5e5a400', pricing: 200, average_review: 3.5, total_reviews: 145,
+});
+
+for (let i = 1; i < 100; i += 1) {
   const mockData = {
     pricing: faker.commerce.price(),
     average_review: (Math.random() * 5),
