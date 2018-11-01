@@ -23,8 +23,15 @@ const Wrapper = styled.section`
   .names {
    background-color: white;
   }
+  .dates {
+    cursor: pointer;
+  }
+  .dates:hover {
+    background-color: yellow;
+  }
   .change-month {
     cursor: pointer;
+    padding: 5px;
     border: 1px solid rgba(0, 0, 0, 0.8);
   }
 `;
@@ -42,6 +49,7 @@ class Calendar extends React.Component {
     this.nextMonth = this.nextMonth.bind(this);
     this.prevMonth = this.prevMonth.bind(this);
     this.renderDates = this.renderDates.bind(this);
+    this.handleCalendarClick = this.handleCalendarClick.bind(this);
   }
 
   renderHeader() {
@@ -66,6 +74,12 @@ class Calendar extends React.Component {
     });
   }
 
+  handleCalendarClick(event) {
+    this.setState({
+      selectedDate: event.target.getAttribute('value'),
+    });
+  }
+
   renderDates() {
     const { currentMonth } = this.state;
     const startOfMonth = dateFns.startOfMonth(currentMonth);
@@ -86,7 +100,7 @@ class Calendar extends React.Component {
     while (day <= endOfWeek) {
       let week = [];
       for (let i = 0; i < 7; i += 1) {
-        week.push(<div className="day dates">{dateFns.format(dateFns.addDays(day, i), 'D')}</div>);
+        week.push(<div className="day dates" value={dateFns.format(dateFns.addDays(day, i), 'dddd MMMM Do YYYY')} onClick={(e) => this.handleCalendarClick(e)}>{dateFns.format(dateFns.addDays(day, i), 'D')}</div>);
       }
       day = dateFns.addDays(day, 7);
       month.push(week);
@@ -96,6 +110,7 @@ class Calendar extends React.Component {
       <div className="month">{month}</div>
     );
   }
+
 
   render() {
     return (
