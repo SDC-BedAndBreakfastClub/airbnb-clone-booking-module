@@ -75,6 +75,7 @@ class Calendar extends React.Component {
   }
 
   handleCalendarClick(event) {
+    this.props.getDate(event);
     this.setState({
       selectedDate: event.target.getAttribute('value'),
     });
@@ -100,7 +101,7 @@ class Calendar extends React.Component {
     while (day <= endOfWeek) {
       let week = [];
       for (let i = 0; i < 7; i += 1) {
-        week.push(<div className="day dates" value={dateFns.format(dateFns.addDays(day, i), 'dddd MMMM Do YYYY')} onClick={(e) => this.handleCalendarClick(e)}>{dateFns.format(dateFns.addDays(day, i), 'D')}</div>);
+        week.push(<div className="day dates" value={dateFns.format(dateFns.addDays(day, i), 'MM/DD/YYYY')} onClick={(e) => this.handleCalendarClick(e)}>{dateFns.format(dateFns.addDays(day, i), 'D')}</div>);
       }
       day = dateFns.addDays(day, 7);
       month.push(week);
