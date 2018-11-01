@@ -12,6 +12,23 @@ const Wrapper = styled.section`
     flex-direction: row;
   }
   .booking-module {
+    box-sizing: content-box;    
+    width: 300px;
+    height: 500px;
+    padding: 30px;    
+    border: 1px solid #e4e4e4;
+    margin-right: 16px;
+    margin-left: 12px;
+    margin-top: 12px;
+  }
+  .listing-price {
+    font-size: 20px;
+  }
+  .listing-price-info {
+    margin-bottom: 10px;
+  }
+  .listing-ratings {
+    margin-bottom: 10px;
   }
 `;
 
@@ -101,8 +118,12 @@ class App extends React.Component {
     } else {
       return (
         <div className="listing-information">
-          <p>{data[0].pricing} per night</p>
-          <p>{data[0].average_review} {data[0].total_reviews}</p>
+          <div className="listing-price-info">
+            <span className="listing-price"><b>${data[0].pricing} </b></span><span>per night</span>
+          </div>
+          <div className="listing-ratings">
+            <span>{data[0].average_review} {data[0].total_reviews}</span>
+          </div>
         </div>
       );
     }
