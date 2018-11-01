@@ -4,11 +4,14 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
   .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width:100%;
-    height: 100%;
+   position: absolute;
+   top: 10px;
+   right: 100px;
+   bottom: 0;
+   left: 100px;
+   z-index: 10040;
+   overflow: auto;
+   overflow-y: auto;
   }
   .calendar {
     position: fixed;
