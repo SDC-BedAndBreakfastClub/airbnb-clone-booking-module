@@ -6,6 +6,7 @@ const Wrapper = styled.section`
   .modal {
    position: fixed;
    top: 10px;
+   background-color: solid white;
    right: 100px;
    bottom: 0;
    left: 100px;
