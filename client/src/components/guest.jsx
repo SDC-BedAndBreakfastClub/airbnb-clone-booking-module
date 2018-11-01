@@ -20,6 +20,7 @@ const Wrapper = styled.div`
     font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
     border-radius: 10px;
     width: 250px;
+    margin-top: 24px;
   }
   .button-plus {
     border-radius: 100%;
@@ -28,8 +29,14 @@ const Wrapper = styled.div`
     border-radius: 100%;
   }
   .dropdown {
-    border: 1px solid rgba(0, 0, 0, 0.8);
-    padding: 5px;
+    box-sizing: content-box;    
+    width: 300px;
+    height: 500px;
+    padding: 30px;    
+    border: 1px solid #e4e4e4;
+    margin-right: 16px;
+    margin-left: 12px;
+    margin-top: 12px;
   }
 `;
 

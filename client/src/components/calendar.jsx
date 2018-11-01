@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
   .modal {
-   position: absolute;
+   position: fixed;
    top: 10px;
    right: 100px;
    bottom: 0;
@@ -15,10 +15,10 @@ const Wrapper = styled.section`
   }
   .calendar {
     position: fixed;
-    width: 80%;
+    width: 40%;
     height: auto;
-    top:50%;
-    left:50%;
+    top:60%;
+    left:20%;
     transform: translate(-50%,-50%);
   }
   .display-block {
@@ -33,7 +33,7 @@ const Wrapper = styled.section`
     justify-content: space-evenly;
   }
   .month {
-    display: inline-grid;
+    display: grid;
     grid-template-columns: auto auto auto auto auto auto auto;
     padding: 10px;
   }
