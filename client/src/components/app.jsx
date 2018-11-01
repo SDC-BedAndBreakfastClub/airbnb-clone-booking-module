@@ -87,25 +87,25 @@ class App extends React.Component {
   showCalendarStart() {
     this.setState({
       showCalStart: true,
-    });
+    }, () => document.addEventListener('click', this.hideCalendarStart));
   }
 
   hideCalendarStart() {
     this.setState({
       showCalStart: false,
-    });
+    }, () => document.removeEventListener('click', this.hideCalendarStart));
   }
 
   showCalendarEnd() {
     this.setState({
       showCalEnd: true,
-    });
+    }, () => document.addEventListener('click', this.hideCalendarEnd));
   }
 
   hideCalendarEnd() {
     this.setState({
       showCalEnd: false,
-    });
+    }, () => document.removeEventListener('click', this.hideCalendarEnd));
   }
 
   renderAsyncData() {
