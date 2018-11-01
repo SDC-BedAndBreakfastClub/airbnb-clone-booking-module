@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   .booking-button {
-    background-color: red;
+    background-color: rgb(254, 90, 94, 1);
     border: none;
     color: #ffffff;
     padding: 15px 32px;
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
     word-wrap: break-word;
     font-size: 16px;
     line-height: 22px;
-    letter-spacing: normal !important;
+    letter-spacing: normal;
     font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
     border-radius: 10px;
     width: 250px;
@@ -26,6 +26,10 @@ const Wrapper = styled.div`
   }
   .button-minus {
     border-radius: 100%;
+  }
+  .dropdown {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 5px;
   }
 `;
 
@@ -79,7 +83,7 @@ class Guest extends React.Component {
           <div>
             <input className="booking-button" value="Book" type="button" onClick={this.handleDropMenu} />
             { drop ? (
-            <div ref={ele => this.menu = ele}>
+            <div className="dropdown" ref={ele => this.menu = ele}>
               <p>Adults</p>
               <input className="button-plus" value="-" type="button" onClick={() => this.handleDecrement('adults')} />
               <input className="button-minus" value="+" type="button" onClick={() => this.handleIncrement('adults')} />
