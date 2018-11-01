@@ -3,6 +3,27 @@ import dateFns from 'date-fns';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+  }
+  .calendar {
+    position: fixed;
+    width: 80%;
+    height: auto;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+  }
+  .display-block {
+    display: block;
+  }
+  .display-none {
+    display: none;
+  }
   .calendar-header {
     display: flex;
     flex-direction: row;
@@ -114,17 +135,21 @@ class Calendar extends React.Component {
 
 
   render() {
+    const showHideClassname = this.props.show ? 'modal display-block' : 'modal display-none';
+
     return (
-      <div>
-        <Wrapper>
+      <Wrapper>
+        <div className={showHideClassname}>
+        <section className="calendar">
           <div className="calendar-header">
             <a className="change-month" onClick={() => this.prevMonth()}>&laquo; </a>
             {this.renderHeader()}
             <a className="change-month" onClick={() => this.nextMonth()}> &raquo;</a>
           </div>
           {this.renderDates()}
-        </Wrapper>
-      </div>
+        </section>
+        </div>
+      </Wrapper>
     );
   }
 }
