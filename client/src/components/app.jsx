@@ -23,15 +23,18 @@ class App extends React.Component {
       data: null,
       start: 'Check In',
       end: 'Check Out',
-      showCal: false,
+      showCalStart: false,
+      showCalEnd: false,
     };
 
     this.handleStartDate = this.handleStartDate.bind(this);
     this.handleEndDate = this.handleEndDate.bind(this);
     this.handleGetRequest = this.handleGetRequest.bind(this);
     this.renderAsyncData = this.renderAsyncData.bind(this);
-    this.showCalendar = this.showCalendar.bind(this);
-    this.hideCalendar = this.hideCalendar.bind(this);
+    this.showCalendarStart = this.showCalendarStart.bind(this);
+    this.hideCalendarStart = this.hideCalendarStart.bind(this);
+    this.showCalendarEnd = this.showCalendarEnd.bind(this);
+    this.hideCalendarEnd = this.hideCalendarEnd.bind(this);
   }
 
   componentDidMount() {
@@ -39,7 +42,7 @@ class App extends React.Component {
   }
 
   handleStartDate(event) {
-    this.hideCalendar();
+    this.hideCalendarStart();
     this.setState({
       start: event.target.getAttribute('value'),
     });
@@ -47,7 +50,7 @@ class App extends React.Component {
 
 
   handleEndDate(event) {
-    this.hideCalendar();
+    this.hideCalendarEnd();
     this.setState({
       end: event.target.getAttribute('value'),
     });
@@ -64,15 +67,27 @@ class App extends React.Component {
   }
 
 
-  showCalendar() {
+  showCalendarStart() {
     this.setState({
-      showCal: true,
+      showCalStart: true,
     });
   }
 
-  hideCalendar() {
+  hideCalendarStart() {
     this.setState({
-      showCal: false,
+      showCalStart: false,
+    });
+  }
+
+  showCalendarEnd() {
+    this.setState({
+      showCalEnd: true,
+    });
+  }
+
+  hideCalendarEnd() {
+    this.setState({
+      showCalEnd: false,
     });
   }
 
@@ -94,16 +109,16 @@ class App extends React.Component {
   }
 
   render() {
-    const { start, end, showCal } = this.state;
+    const { start, end, showCalStart, showCalEnd } = this.state;
     return (
       <Wrapper>
         <div className="booking-module">
           {this.renderAsyncData()}
           <div className="calendars">
-            <Calendar show={showCal} getDate={this.handleStartDate} />
-            <Calendar show={showCal} getDate={this.handleEndDate} />
-            <input type="text" value={start} onClick={this.showCalendar} readOnly />
-            <input type="text" value={end} onClick={this.showCalendar} readOnly />
+            <Calendar show={showCalStart} getDate={this.handleStartDate} />
+            <Calendar show={showCalEnd} getDate={this.handleEndDate} />
+            <input type="text" value={start} onClick={this.showCalendarStart} readOnly />
+            <input type="text" value={end} onClick={this.showCalendarEnd} readOnly />
           </div>
           <Guest />
         </div>
