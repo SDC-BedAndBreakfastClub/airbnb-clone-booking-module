@@ -11,9 +11,8 @@ const Wrapper = styled.section`
     transition: height 0.2s ease-in-out 0s !important;
   }
   .calendar {
-    background-color: solid white;
     position: fixed;
-    width: 40%;
+    width: 20%;
     height: auto;
     top:60%;
     left:20%;
@@ -27,19 +26,18 @@ const Wrapper = styled.section`
   }
   .calendar-header {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
   }
   .month {
     display: inline-grid;
     grid-template-columns: auto auto auto auto auto auto auto;
-    padding: 10px;
   }
   .day {
     background-color: rgba(125, 255, 255, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    font-size: 15px;
+    padding: 10px;
+    font-size: 8px;
     text-align: center;
   }
   .names {
@@ -47,6 +45,7 @@ const Wrapper = styled.section`
   }
   .dates {
     cursor: pointer;
+    width: 16px;
   }
   .dates:hover {
     background-color: yellow;
@@ -55,6 +54,15 @@ const Wrapper = styled.section`
     cursor: pointer;
     padding: 5px;
     border: 1px solid rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    height: 10px;
+    width: 10px;
+  }
+  .month-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
 `;
 
@@ -144,12 +152,18 @@ class Calendar extends React.Component {
         <div className={showHideClassname}>
           <div className="calendar">
             <div className="calendar-header">
-              <a className="change-month" onClick={() => this.prevMonth()}>&laquo; </a>
-              {this.renderHeader()}
-              <a className="change-month" onClick={() => this.nextMonth()}> &raquo;</a>
+              <div className="month-control">
+                <div>
+                  <a className="change-month" onClick={() => this.prevMonth()}>&laquo; </a>
+                </div>
+                {this.renderHeader()}
+                <div>
+                  <a className="change-month" onClick={() => this.nextMonth()}> &raquo;</a>
+                </div>
+              </div>
             </div>
             {this.renderDates()}
-            </div>
+          </div>
         </div>
       </Wrapper>
     );

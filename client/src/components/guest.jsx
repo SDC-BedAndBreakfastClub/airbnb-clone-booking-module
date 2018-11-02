@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   .dropdown {
     box-sizing: content-box;   
     width: 200px;
-    height: 200px;
+    height: 150px;
     padding: 30px;    
     border: 1px solid #e4e4e4;
     right: 20%;
@@ -59,7 +59,8 @@ const Wrapper = styled.div`
   }
   .guest-type {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 80px auto auto auto;
+    padding-bottom: 10px;
   }
 `;
 
@@ -199,7 +200,11 @@ class Guest extends React.Component {
                   </div>
                   <div>
                     <input className="button-plus" value="-" type="button" onClick={() => this.handleAdultDecrement()} />
+                  </div>
+                  <div>
                     <span>{adults}</span>
+                  </div>
+                  <div>
                     <input className="button-minus" value="+" type="button" onClick={() => this.handleAdultIncrement()} />
                   </div>
                 </div>
@@ -209,7 +214,11 @@ class Guest extends React.Component {
                   </div>
                   <div>
                     <input className="button-plus" value="-" type="button" onClick={() => this.handleChildrenDecrement()} />
+                  </div>
+                  <div>
                     <span>{children}</span>
+                  </div>
+                  <div>
                     <input className="button-minus" value="+" type="button" onClick={() => this.handleChildrenIncrement()} />
                   </div>
                 </div>
@@ -219,7 +228,11 @@ class Guest extends React.Component {
                   </div>
                   <div>
                     <input className="button-plus" value="-" type="button" onClick={() => this.handleInfantDecrement()} />
+                  </div>
+                  <div>
                     <span>{infants}</span>
+                  </div>
+                  <div>
                     <input className="button-minus" value="+" type="button" onClick={() => this.handleInfantIncrement()} />
                   </div>
                 </div>
