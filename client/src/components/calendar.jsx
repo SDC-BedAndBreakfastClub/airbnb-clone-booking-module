@@ -77,12 +77,6 @@ class Calendar extends React.Component {
       currentMonth: new Date(),
       selectedDate: new Date(),
     };
-
-    this.renderHeader = this.renderHeader.bind(this);
-    this.nextMonth = this.nextMonth.bind(this);
-    this.prevMonth = this.prevMonth.bind(this);
-    this.renderDates = this.renderDates.bind(this);
-    this.handleCalendarClick = this.handleCalendarClick.bind(this);
   }
 
 

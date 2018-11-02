@@ -4,8 +4,6 @@ import Guest from './guest.jsx';
 import Calendar from './calendar.jsx';
 import styled from 'styled-components';
 
-// material-ui
-
 const Wrapper = styled.section`
   font-family: 'Montserrat', sans-serif;
   .drop-calendars {
@@ -93,14 +91,8 @@ class App extends React.Component {
 
     this.handleStartDate = this.handleStartDate.bind(this);
     this.handleEndDate = this.handleEndDate.bind(this);
-    this.handleGetRequest = this.handleGetRequest.bind(this);
-    this.renderAsyncData = this.renderAsyncData.bind(this);
     this.showCalendarStart = this.showCalendarStart.bind(this);
-    this.hideCalendarStart = this.hideCalendarStart.bind(this);
     this.showCalendarEnd = this.showCalendarEnd.bind(this);
-    this.hideCalendarEnd = this.hideCalendarEnd.bind(this);
-    this.updateGuestData = this.updateGuestData.bind(this);
-    this.generateStarRating = this.generateStarRating.bind(this);
   }
 
   componentDidMount() {
@@ -180,15 +172,15 @@ class App extends React.Component {
       }
     }
 
-    return(
-     <div className="listing-ratings">
-      <span>{starArray}</span>
-      <span>
-        <small>
-          {data[0].total_reviews}
-        </small>
-      </span>
-    </div>
+    return (
+      <div className="listing-ratings">
+        <span>{starArray}</span>
+        <span>
+          <small>
+            {data[0].total_reviews}
+          </small>
+        </span>
+      </div>
 
     );
   }
