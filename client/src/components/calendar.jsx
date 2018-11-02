@@ -50,6 +50,9 @@ const Wrapper = styled.section`
   .dates:hover {
     background-color: yellow;
   }
+  .not-dates {
+    width: 16px;
+  }
   .change-month {
     cursor: pointer;
     padding: 5px;
@@ -136,7 +139,7 @@ class Calendar extends React.Component {
         if (dateFns.getMonth(dateFns.format(dateFns.addDays(day, i), 'MM/DD/YYYY')) === thisMonth) {
           week.push(<div className="day dates" value={dateFns.format(dateFns.addDays(day, i), 'MM/DD/YYYY')} onClick={(e) => this.handleCalendarClick(e)}>{dateFns.format(dateFns.addDays(day, i), 'D')}</div>);
         } else {
-          week.push(<div className="day dates"></div>);
+          week.push(<div className="day not-dates"></div>);
         }
       }
       day = dateFns.addDays(day, 7);
