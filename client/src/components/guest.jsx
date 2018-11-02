@@ -59,7 +59,7 @@ const Wrapper = styled.div`
   }
   .guest-type {
     display: grid;
-    grid-template-columns: 80px auto auto auto;
+    grid-template-columns: 100px auto auto auto;
     padding-bottom: 10px;
   }
 `;
