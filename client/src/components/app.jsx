@@ -28,7 +28,12 @@ const Wrapper = styled.section`
     margin-bottom: 10px;
   }
   .listing-ratings {
-    margin-bottom: 10px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #e4e4e4;
+  }
+  .calendar {
+    margin-bottom: 8px;
+    margin-top: 16px;
   }
 `;
 
@@ -37,7 +42,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      data: null,
+      data: [{max_guests: 0}],
       start: 'Check In',
       end: 'Check Out',
       showCalStart: false,
@@ -52,6 +57,7 @@ class App extends React.Component {
     this.hideCalendarStart = this.hideCalendarStart.bind(this);
     this.showCalendarEnd = this.showCalendarEnd.bind(this);
     this.hideCalendarEnd = this.hideCalendarEnd.bind(this);
+    this.updateGuestData = this.updateGuestData.bind(this);
   }
 
   componentDidMount() {
@@ -129,6 +135,20 @@ class App extends React.Component {
     }
   }
 
+  updateGuestData() {
+    const { data } = this.state;
+
+    if (!data) {
+      return (
+        <Guest />
+      );
+    } else {
+      return (
+        <Guest info={data} />
+      );
+    }
+  }
+
   render() {
     const { start, end, showCalStart, showCalEnd } = this.state;
     return (
@@ -136,12 +156,19 @@ class App extends React.Component {
         <div className="booking-module">
           {this.renderAsyncData()}
           <div className="calendars">
-            <Calendar show={showCalStart} getDate={this.handleStartDate} />
-            <Calendar show={showCalEnd} getDate={this.handleEndDate} />
-            <input type="text" value={start} onClick={this.showCalendarStart} readOnly />
-            <input type="text" value={end} onClick={this.showCalendarEnd} readOnly />
+            <div>
+              <label>
+                <small>Dates</small>
+              </label>
+            </div>
+            <div>
+              <Calendar show={showCalStart} getDate={this.handleStartDate} />
+              <Calendar show={showCalEnd} getDate={this.handleEndDate} />
+              <input type="text" value={start} onClick={this.showCalendarStart} readOnly />
+              <input type="text" value={end} onClick={this.showCalendarEnd} readOnly />
+            </div>
           </div>
-          <Guest />
+          {this.updateGuestData()}
         </div>
       </Wrapper>
     );

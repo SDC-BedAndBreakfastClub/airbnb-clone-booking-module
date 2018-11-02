@@ -15,6 +15,8 @@ const Wrapper = styled.section`
    overflow-y: auto;
   }
   .calendar {
+    box-sizing: content-box;
+    background-color: solid white;
     position: fixed;
     width: 40%;
     height: auto;

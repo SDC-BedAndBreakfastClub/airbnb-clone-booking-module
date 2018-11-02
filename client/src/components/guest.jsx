@@ -34,9 +34,11 @@ const Wrapper = styled.div`
     height: 500px;
     padding: 30px;    
     border: 1px solid #e4e4e4;
+    right: 20%;
     margin-right: 16px;
     margin-left: 12px;
     margin-top: 12px;
+    background-color: rgba(255,255,255,1);
   }
 `;
 
@@ -49,6 +51,8 @@ class Guest extends React.Component {
       adults: 0,
       children: 0,
       infants: 0,
+      total: 0,
+      max: this.props.info[0].max_guests,
     };
 
     this.handleDropMenu = this.handleDropMenu.bind(this);
@@ -83,24 +87,34 @@ class Guest extends React.Component {
   }
 
   render() {
-    const { drop } = this.state;
+    const { drop, total } = this.state;
 
     return (
         <Wrapper>
           <div>
-            <input className="booking-button" value="Book" type="button" onClick={this.handleDropMenu} />
-            { drop ? (
-            <div className="dropdown" ref={ele => this.menu = ele}>
-              <p>Adults</p>
-              <input className="button-plus" value="-" type="button" onClick={() => this.handleDecrement('adults')} />
-              <input className="button-minus" value="+" type="button" onClick={() => this.handleIncrement('adults')} />
-              <p>Children</p>
-              <input className="button-plus" value="-" type="button" onClick={() => this.handleDecrement('children')} />
-              <input className="button-minus" value="+" type="button" onClick={() => this.handleIncrement('children')} />
-              <p>Infants</p>
-              <input className="button-plus" value="-" type="button" onClick={() => this.handleDecrement('infants')} />
-              <input className="button-minus" value="+" type="button" onClick={() => this.handleIncrement('infants')} />
-            </div>) : null }
+            <div>
+              <label>
+                <small>Guests</small>
+              </label>
+            </div>
+              <input type="text" value={'5 guests'} onClick={this.handleDropMenu} readOnly />
+            <div>
+            </div>
+            <div>
+              <input className="booking-button" value="Book" type="button" />
+              { drop ? (
+              <div className="dropdown" ref={ele => this.menu = ele}>
+                <p>Adults</p>
+                <input className="button-plus" value="-" type="button" onClick={() => this.handleDecrement('adults')} />
+                <input className="button-minus" value="+" type="button" onClick={() => this.handleIncrement('adults')} />
+                <p>Children</p>
+                <input className="button-plus" value="-" type="button" onClick={() => this.handleDecrement('children')} />
+                <input className="button-minus" value="+" type="button" onClick={() => this.handleIncrement('children')} />
+                <p>Infants</p>
+                <input className="button-plus" value="-" type="button" onClick={() => this.handleDecrement('infants')} />
+                <input className="button-minus" value="+" type="button" onClick={() => this.handleIncrement('infants')} />
+              </div>) : null }
+            </div>
           </div>
         </Wrapper>
     );
