@@ -81,8 +81,6 @@ class Guest extends React.Component {
   }
 
   handleDropMenu(event) {
-    event.preventDefault();
-
     this.setState({
       drop: true,
     }, () => document.addEventListener('click', this.handleCloseMenu));
@@ -192,13 +190,13 @@ class Guest extends React.Component {
                     <span>Adults</span>
                   </div>
                   <div>
-                    <input className="button-plus" value="-" type="button" onClick={() => this.handleAdultDecrement()} />
+                    <input className="button-minus" value="-" type="button" onClick={() => this.handleAdultDecrement()} />
                   </div>
                   <div>
                     <span>{adults}</span>
                   </div>
                   <div>
-                    <input className="button-minus" value="+" type="button" onClick={() => this.handleAdultIncrement()} />
+                    <input className="button-plus" value="+" type="button" onClick={() => this.handleAdultIncrement()} />
                   </div>
                 </div>
                 <div className="guest-type children">
@@ -206,13 +204,13 @@ class Guest extends React.Component {
                     <span>Children</span>
                   </div>
                   <div>
-                    <input className="button-plus" value="-" type="button" onClick={() => this.handleChildrenDecrement()} />
+                    <input className="button-minus" value="-" type="button" onClick={() => this.handleChildrenDecrement()} />
                   </div>
                   <div>
                     <span>{children}</span>
                   </div>
                   <div>
-                    <input className="button-minus" value="+" type="button" onClick={() => this.handleChildrenIncrement()} />
+                    <input className="button-plus" value="+" type="button" onClick={() => this.handleChildrenIncrement()} />
                   </div>
                 </div>
                 <div className="guest-type infants">
@@ -220,13 +218,13 @@ class Guest extends React.Component {
                     <span>Infants</span>
                   </div>
                   <div>
-                    <input className="button-plus" value="-" type="button" onClick={() => this.handleInfantDecrement()} />
+                    <input className="button-minus" value="-" type="button" onClick={() => this.handleInfantDecrement()} />
                   </div>
                   <div>
                     <span>{infants}</span>
                   </div>
                   <div>
-                    <input className="button-minus" value="+" type="button" onClick={() => this.handleInfantIncrement()} />
+                    <input className="button-plus" value="+" type="button" onClick={() => this.handleInfantIncrement()} />
                   </div>
                 </div>
               </div>) : null }
