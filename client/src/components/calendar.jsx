@@ -11,7 +11,6 @@ const Wrapper = styled.section`
     transition: height 0.2s ease-in-out 0s !important;
   }
   .calendar {
-    box-sizing: content-box;
     background-color: solid white;
     position: fixed;
     width: 40%;
@@ -32,7 +31,7 @@ const Wrapper = styled.section`
     justify-content: space-evenly;
   }
   .month {
-    display: grid;
+    display: inline-grid;
     grid-template-columns: auto auto auto auto auto auto auto;
     padding: 10px;
   }
@@ -75,13 +74,6 @@ class Calendar extends React.Component {
     this.handleCalendarClick = this.handleCalendarClick.bind(this);
   }
 
-  renderHeader() {
-    const { currentMonth } = this.state;
-
-    return (
-      <div>{dateFns.format(currentMonth, 'MMMM YYYY')}</div>
-    );
-  }
 
   nextMonth() {
     const { currentMonth } = this.state;
@@ -102,6 +94,14 @@ class Calendar extends React.Component {
     this.setState({
       selectedDate: event.target.getAttribute('value'),
     });
+  }
+
+  renderHeader() {
+    const { currentMonth } = this.state;
+
+    return (
+      <div>{dateFns.format(currentMonth, 'MMMM YYYY')}</div>
+    );
   }
 
   renderDates() {
@@ -142,14 +142,14 @@ class Calendar extends React.Component {
     return (
       <Wrapper>
         <div className={showHideClassname}>
-        <section className="calendar">
-          <div className="calendar-header">
-            <a className="change-month" onClick={() => this.prevMonth()}>&laquo; </a>
-            {this.renderHeader()}
-            <a className="change-month" onClick={() => this.nextMonth()}> &raquo;</a>
-          </div>
-          {this.renderDates()}
-        </section>
+          <div className="calendar">
+            <div className="calendar-header">
+              <a className="change-month" onClick={() => this.prevMonth()}>&laquo; </a>
+              {this.renderHeader()}
+              <a className="change-month" onClick={() => this.nextMonth()}> &raquo;</a>
+            </div>
+            {this.renderDates()}
+            </div>
         </div>
       </Wrapper>
     );

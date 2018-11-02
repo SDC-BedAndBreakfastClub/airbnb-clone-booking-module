@@ -15,7 +15,7 @@ const Wrapper = styled.section`
   .booking-module {
     box-sizing: content-box;    
     width: 300px;
-    height: 500px;
+    height: 400px;
     padding: 30px;    
     border: 1px solid #e4e4e4;
     margin-right: 16px;
@@ -52,7 +52,6 @@ const Wrapper = styled.section`
     width: 110px;
   }
   input[value] {
-    
     font-size: 18px;
   }
   .end-cal {
@@ -85,7 +84,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      data: [{ max_guests: 0 }],
+      data: null,
       start: 'Check In',
       end: 'Check Out',
       showCalStart: false,
@@ -219,7 +218,7 @@ class App extends React.Component {
       <div className="listing-information">
         <div className="listing-price-info">
           <span className="listing-price"><b>${data[0].pricing} </b></span>
-          <span>per night</span>
+          <span><b>per night</b></span>
           {this.generateStarRating(data[0].average_review)}
         </div>
       </div>
@@ -235,7 +234,7 @@ class App extends React.Component {
           <div className="calendars">
             <div className="dates-label">
               <label>
-                <small>Dates</small>
+                <small><b>Dates</b></small>
               </label>
             </div>
             <div>
