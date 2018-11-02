@@ -35,7 +35,7 @@ const Wrapper = styled.section`
     margin-bottom: 16px;
     border-bottom: 1px solid #e4e4e4;
   }
-  .calendar {
+  .calendars {
     margin-bottom: 8px;
     margin-top: 16px;
   }
@@ -246,7 +246,7 @@ class App extends React.Component {
               <input className="start-cal" type="text" value={start} onClick={this.showCalendarStart} readOnly />
               <svg className="arrow" viewBox="0 0 24 24"><path d="m0 12.5a.5.5 0 0 0 .5.5h21.79l-6.15 6.15a.5.5 0 1 0 .71.71l7-7v-.01a.5.5 0 0 0 .14-.35.5.5 0 0 0 -.14-.35v-.01l-7-7a .5.5 0 0 0 -.71.71l6.15 6.15h-21.79a.5.5 0 0 0 -.5.5z"></path></svg>
               <input className="end-cal" type="text" value={end} onClick={this.showCalendarEnd} readOnly />
-            </div>  
+            </div> 
             </div>
           </div>
           {this.updateGuestData()}
