@@ -3,16 +3,12 @@ import dateFns from 'date-fns';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
+  font-family: 'Montserrat', sans-serif;
   .modal {
-   position: fixed;
-   top: 10px;
-   background-color: solid white;
-   right: 100px;
-   bottom: 0;
-   left: 100px;
-   z-index: 10040;
-   overflow: auto;
-   overflow-y: auto;
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 3px !important;
+    transition: height 0.2s ease-in-out 0s !important;
   }
   .calendar {
     box-sizing: content-box;
