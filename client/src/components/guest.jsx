@@ -78,13 +78,6 @@ class Guest extends React.Component {
 
     this.handleDropMenu = this.handleDropMenu.bind(this);
     this.handleCloseMenu = this.handleCloseMenu.bind(this);
-    this.handleAdultIncrement = this.handleAdultIncrement.bind(this);
-    this.handleAdultDecrement = this.handleAdultDecrement.bind(this);
-    this.handleChildrenIncrement = this.handleChildrenIncrement.bind(this);
-    this.handleChildrenDecrement = this.handleChildrenDecrement.bind(this);
-    this.handleInfantIncrement = this.handleInfantIncrement.bind(this);
-    this.handleInfantDecrement = this.handleInfantDecrement.bind(this);
-    this.renderGuestBar = this.renderGuestBar.bind(this);
   }
 
   handleDropMenu(event) {
