@@ -14,6 +14,7 @@ for (let i = 1; i < 100; i += 1) {
     pricing: faker.commerce.price(),
     average_review: (Math.random() * 5),
     total_reviews: (Math.floor(Math.random() * 200)),
+    max_guests: (Math.floor(Math.random() * 6)),
   };
   fakeDataset.push(mockData);
 }
