@@ -14,10 +14,19 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/,
+        loader: 'style-loader',
+      },
+      {
+        test: /\.css$/,
+        loader: 'css-loader',
+        query: {
+          modules: true,
+          localIdentName: '[name]__[local]___[hash:base64:5]',
+        },
+      },
     ],
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'],
   },
   output: {
     filename: 'bundle.js',

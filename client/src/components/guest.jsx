@@ -1,4 +1,68 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  font-family: 'Montserrat', sans-serif;
+  .booking-button {
+    background-color: rgb(254, 90, 94, 1);
+    border: none;
+    color: #ffffff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 800;
+    margin: 0px;
+    cursor: pointer;
+    word-wrap: break-word;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: normal;
+    border-radius: 5px;
+    width: 300px;
+    margin-top: 24px;
+  }
+  .button-plus {
+    border-radius: 100%;
+    vertical-align: middle !important;
+  }
+  .button-minus {
+    border-radius: 100%;
+    vertical-align: middle !important;
+  }
+  .dropdown {
+    box-sizing: content-box;   
+    width: 200px;
+    height: 150px;
+    padding: 30px;    
+    border: 1px solid #e4e4e4;
+    right: 20%;
+    margin-right: 16px;
+    margin-left: 12px;
+    margin-top: 12px;
+    background-color: rgba(255,255,255,1);
+  }
+  .guest-bar {
+    border: 0px;
+  }
+  .guest-display {
+    border: 1px solid #e4e4e4;
+    padding: 5px  
+  }
+  input[value] {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+  }
+  .guest-label {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .guest-type {
+    display: grid;
+    grid-template-columns: 100px auto auto auto;
+    padding-bottom: 10px;
+  }
+`;
 
 class Guest extends React.Component {
   constructor(props) {
@@ -6,15 +70,21 @@ class Guest extends React.Component {
 
     this.state = {
       drop: false,
-      adults: 0,
+      adults: 1,
       children: 0,
       infants: 0,
+      total: 1,
     };
 
     this.handleDropMenu = this.handleDropMenu.bind(this);
     this.handleCloseMenu = this.handleCloseMenu.bind(this);
-    this.handleIncrement = this.handleIncrement.bind(this);
-    this.handleDecrement = this.handleDecrement.bind(this);
+    this.handleAdultIncrement = this.handleAdultIncrement.bind(this);
+    this.handleAdultDecrement = this.handleAdultDecrement.bind(this);
+    this.handleChildrenIncrement = this.handleChildrenIncrement.bind(this);
+    this.handleChildrenDecrement = this.handleChildrenDecrement.bind(this);
+    this.handleInfantIncrement = this.handleInfantIncrement.bind(this);
+    this.handleInfantDecrement = this.handleInfantDecrement.bind(this);
+    this.renderGuestBar = this.renderGuestBar.bind(this);
   }
 
   handleDropMenu(event) {
@@ -33,34 +103,144 @@ class Guest extends React.Component {
     }
   }
 
-  handleIncrement(guestType) {
-    this.state[guestType] += 1;
+  handleAdultIncrement() {
+    const { adults, children } = this.state;
+    if (this.props.max > adults + children) {
+      this.setState(prevState => ({
+        adults: prevState.adults + 1,
+        total: prevState.total + 1,
+      }));
+    }
   }
 
-  handleDecrement(guestType) {
-    this.state[guestType] -= 1;
+  handleAdultDecrement() {
+    const { adults } = this.state;
+    if (adults > 1) {
+      this.setState(prevState => ({
+        adults: prevState.adults - 1,
+        total: prevState.total - 1,
+      }));
+    }
+  }
+
+  handleChildrenIncrement() {
+    const { adults, children } = this.state;
+    if (this.props.max > adults + children) {
+      this.setState(prevState => ({
+        children: prevState.children + 1,
+        total: prevState.total + 1,
+      }));
+    }
+  }
+
+  handleChildrenDecrement() {
+    const { children } = this.state;
+    if (children > 0) {
+      this.setState(prevState => ({
+        children: prevState.children - 1,
+        total: prevState.total - 1,
+      }));
+    }
+  }
+
+  handleInfantIncrement() {
+    const { infants } = this.state;
+    if (infants < 8) {
+      this.setState(prevState => ({
+        infants: prevState.infants + 1,
+        total: prevState.total + 1,
+      }));
+    }
+  }
+
+  handleInfantDecrement() {
+    const { infants } = this.state;
+    if (infants > 0) {
+      this.setState(prevState => ({
+        infants: prevState.infants - 1,
+        total: prevState.total - 1,
+      }));
+    }
+  }
+
+  renderGuestBar() {
+    const { total } = this.state;
+    if (total === 1) {
+      return (
+        <input className="guest-bar" type="text" value="1 guest" onClick={this.handleDropMenu} readOnly />
+      );
+    }
+    return (
+      <input className="guest-bar" type="text" value={`${total} guests`} onClick={this.handleDropMenu} readOnly />
+    );
   }
 
   render() {
-    const { drop } = this.state;
+    const { drop, adults, children, infants } = this.state;
 
     return (
-      <div>
-        <h1>Booking Button</h1>
-        <input value="Book" type="button" onClick={this.handleDropMenu} />
-        { drop ? (
-          <div ref={ele => this.menu = ele}>
-            <p>Adults</p>
-            <input value="-" type="button" onClick={() => this.handleDecrement('adults')} />
-            <input value="+" type="button" onClick={() => this.handleIncrement('adults')} />
-            <p>Children</p>
-            <input value="-" type="button" onClick={() => this.handleDecrement('children')} />
-            <input value="+" type="button" onClick={() => this.handleIncrement('children')} />
-            <p>Infants</p>
-            <input value="-" type="button" onClick={() => this.handleDecrement('infants')} />
-            <input value="+" type="button" onClick={() => this.handleIncrement('infants')} />
-          </div>) : null }
-      </div>
+        <Wrapper>
+          <div>
+            <div className="guest-label">
+              <label>
+                <small><b>Guests</b></small>
+              </label>
+            </div>
+            <div className="guest-display">
+              {this.renderGuestBar()}
+            </div>
+            <div>
+            </div>
+            <div>
+              { drop ? (
+              <div className="dropdown" ref={ele => this.menu = ele}>
+                <div className="guest-type adults">
+                  <div className="adults-label">
+                    <span>Adults</span>
+                  </div>
+                  <div>
+                    <input className="button-plus" value="-" type="button" onClick={() => this.handleAdultDecrement()} />
+                  </div>
+                  <div>
+                    <span>{adults}</span>
+                  </div>
+                  <div>
+                    <input className="button-minus" value="+" type="button" onClick={() => this.handleAdultIncrement()} />
+                  </div>
+                </div>
+                <div className="guest-type children">
+                  <div className="children-label">
+                    <span>Children</span>
+                  </div>
+                  <div>
+                    <input className="button-plus" value="-" type="button" onClick={() => this.handleChildrenDecrement()} />
+                  </div>
+                  <div>
+                    <span>{children}</span>
+                  </div>
+                  <div>
+                    <input className="button-minus" value="+" type="button" onClick={() => this.handleChildrenIncrement()} />
+                  </div>
+                </div>
+                <div className="guest-type infants">
+                  <div className="infants-label">
+                    <span>Infants</span>
+                  </div>
+                  <div>
+                    <input className="button-plus" value="-" type="button" onClick={() => this.handleInfantDecrement()} />
+                  </div>
+                  <div>
+                    <span>{infants}</span>
+                  </div>
+                  <div>
+                    <input className="button-minus" value="+" type="button" onClick={() => this.handleInfantIncrement()} />
+                  </div>
+                </div>
+              </div>) : null }
+              {!drop ? (<input className="booking-button" value="Book" type="button" />) : null}
+            </div>
+          </div>
+        </Wrapper>
     );
   }
 }
