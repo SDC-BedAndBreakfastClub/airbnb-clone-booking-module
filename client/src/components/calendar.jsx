@@ -118,6 +118,7 @@ class Calendar extends React.Component {
     const startOfWeek = dateFns.startOfWeek(startOfMonth);
     const endOfMonth = dateFns.endOfMonth(currentMonth);
     const endOfWeek = dateFns.endOfWeek(endOfMonth);
+    const thisMonth = dateFns.getMonth(currentMonth);
 
     let day = startOfWeek;
     let month = [];
@@ -132,7 +133,11 @@ class Calendar extends React.Component {
     while (day <= endOfWeek) {
       let week = [];
       for (let i = 0; i < 7; i += 1) {
-        week.push(<div className="day dates" value={dateFns.format(dateFns.addDays(day, i), 'MM/DD/YYYY')} onClick={(e) => this.handleCalendarClick(e)}>{dateFns.format(dateFns.addDays(day, i), 'D')}</div>);
+        if (dateFns.getMonth(dateFns.format(dateFns.addDays(day, i), 'MM/DD/YYYY')) === thisMonth) {
+          week.push(<div className="day dates" value={dateFns.format(dateFns.addDays(day, i), 'MM/DD/YYYY')} onClick={(e) => this.handleCalendarClick(e)}>{dateFns.format(dateFns.addDays(day, i), 'D')}</div>);
+        } else {
+          week.push(<div className="day dates"></div>);
+        }
       }
       day = dateFns.addDays(day, 7);
       month.push(week);
