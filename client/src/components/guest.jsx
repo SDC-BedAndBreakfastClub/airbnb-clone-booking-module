@@ -18,21 +18,22 @@ const Wrapper = styled.div`
     font-size: 16px;
     line-height: 22px;
     letter-spacing: normal;
-    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
-    border-radius: 10px;
-    width: 250px;
+    border-radius: 5px;
+    width: 300px;
     margin-top: 24px;
   }
   .button-plus {
     border-radius: 100%;
+    vertical-align: middle !important;
   }
   .button-minus {
     border-radius: 100%;
+    vertical-align: middle !important;
   }
   .dropdown {
-    box-sizing: content-box;    
-    width: 300px;
-    height: 500px;
+    box-sizing: content-box;   
+    width: 200px;
+    height: 200px;
     padding: 30px;    
     border: 1px solid #e4e4e4;
     right: 20%;
@@ -56,9 +57,9 @@ const Wrapper = styled.div`
     padding-top: 5px;
     padding-bottom: 5px;
   }
-  .adults {
-    display: flex;
-    flex-direction: row;
+  .guest-type {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
   }
 `;
 
@@ -181,7 +182,7 @@ class Guest extends React.Component {
           <div>
             <div className="guest-label">
               <label>
-                <small>Guests</small>
+                <small><b>Guests</b></small>
               </label>
             </div>
             <div className="guest-display">
@@ -190,28 +191,40 @@ class Guest extends React.Component {
             <div>
             </div>
             <div>
-              <input className="booking-button" value="Book" type="button" />
               { drop ? (
               <div className="dropdown" ref={ele => this.menu = ele}>
-                <div className="adults">
-                  <span>Adults</span>
-                  <input className="button-plus" value="-" type="button" onClick={() => this.handleAdultDecrement()} />
-                  <span>{adults}</span>
-                  <input className="button-minus" value="+" type="button" onClick={() => this.handleAdultIncrement()} />
+                <div className="guest-type adults">
+                  <div className="adults-label">
+                    <span>Adults</span>
+                  </div>
+                  <div>
+                    <input className="button-plus" value="-" type="button" onClick={() => this.handleAdultDecrement()} />
+                    <span>{adults}</span>
+                    <input className="button-minus" value="+" type="button" onClick={() => this.handleAdultIncrement()} />
+                  </div>
                 </div>
-                <div className="children">
-                  <span>Children</span>
-                  <input className="button-plus" value="-" type="button" onClick={() => this.handleChildrenDecrement()} />
-                  <span>{children}</span>
-                  <input className="button-minus" value="+" type="button" onClick={() => this.handleChildrenIncrement()} />
+                <div className="guest-type children">
+                  <div className="children-label">
+                    <span>Children</span>
+                  </div>
+                  <div>
+                    <input className="button-plus" value="-" type="button" onClick={() => this.handleChildrenDecrement()} />
+                    <span>{children}</span>
+                    <input className="button-minus" value="+" type="button" onClick={() => this.handleChildrenIncrement()} />
+                  </div>
                 </div>
-                <div className="infants">
-                  <span>Infants</span>
-                  <input className="button-plus" value="-" type="button" onClick={() => this.handleInfantDecrement()} />
-                  <span>{infants}</span>
-                  <input className="button-minus" value="+" type="button" onClick={() => this.handleInfantIncrement()} />
+                <div className="guest-type infants">
+                  <div className="infants-label">
+                    <span>Infants</span>
+                  </div>
+                  <div>
+                    <input className="button-plus" value="-" type="button" onClick={() => this.handleInfantDecrement()} />
+                    <span>{infants}</span>
+                    <input className="button-minus" value="+" type="button" onClick={() => this.handleInfantIncrement()} />
+                  </div>
                 </div>
               </div>) : null }
+              {!drop ? (<input className="booking-button" value="Book" type="button" />) : null}
             </div>
           </div>
         </Wrapper>
