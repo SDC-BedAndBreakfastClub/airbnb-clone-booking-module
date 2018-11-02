@@ -128,7 +128,7 @@ class Calendar extends React.Component {
     let days = [];
 
     for (let i = 0; i < 7; i += 1) {
-      days.push(<div className="day names"><b>{dateFns.format(dateFns.addDays(day, i), 'dd')}</b></div>);
+      days.push(<div key={`weekday${i}`}className="day names"><b>{dateFns.format(dateFns.addDays(day, i), 'dd')}</b></div>);
     }
 
     month.push(days);
@@ -137,9 +137,9 @@ class Calendar extends React.Component {
       let week = [];
       for (let i = 0; i < 7; i += 1) {
         if (dateFns.getMonth(dateFns.format(dateFns.addDays(day, i), 'MM/DD/YYYY')) === thisMonth) {
-          week.push(<div className="day dates" value={dateFns.format(dateFns.addDays(day, i), 'MM/DD/YYYY')} onClick={(e) => this.handleCalendarClick(e)}>{dateFns.format(dateFns.addDays(day, i), 'D')}</div>);
+          week.push(<div key={`${day} ${i}`}className="day dates" value={dateFns.format(dateFns.addDays(day, i), 'MM/DD/YYYY')} onClick={(e) => this.handleCalendarClick(e)}>{dateFns.format(dateFns.addDays(day, i), 'D')}</div>);
         } else {
-          week.push(<div className="day not-dates"></div>);
+          week.push(<div key={`${day} ${i}`}className="day not-dates"></div>);
         }
       }
       day = dateFns.addDays(day, 7);
