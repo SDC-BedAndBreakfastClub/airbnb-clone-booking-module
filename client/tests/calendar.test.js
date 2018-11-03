@@ -42,7 +42,7 @@ describe('Calendar component', () => {
 
   test("click should be functional", () => {
   	const today = new Date();
-  	const wrapper = mount(<Calendar show={true} getDate={() => {}} />);
+  	const wrapper = shallow(<Calendar show={true} getDate={() => {}} />);
   	wrapper.find('.prev').simulate('click');
   	wrapper.find('.prev').simulate('click');
   	wrapper.find('.next').simulate('click');
