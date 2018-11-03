@@ -96,7 +96,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.handleGetRequest('5bd91f697190430ef5e5a400');
+    this.handleGetRequest();
   }
 
   handleStartDate(event) {
@@ -106,7 +106,6 @@ class App extends React.Component {
     });
   }
 
-
   handleEndDate(event) {
     this.hideCalendarEnd();
     this.setState({
@@ -114,7 +113,7 @@ class App extends React.Component {
     });
   }
 
-  handleGetRequest(id) {
+  handleGetRequest(id = '5bd91f697190430ef5e5a400') {
     $.ajax({
       method: 'GET',
       url: `/api/rooms/${id}/booking`,
@@ -174,7 +173,7 @@ class App extends React.Component {
 
     return (
       <div className="listing-ratings">
-        <span>{starArray}</span>
+        <span className="star-ratings">{starArray}</span>
         <span>
           <small>
             {data[0].total_reviews}
@@ -238,7 +237,7 @@ class App extends React.Component {
               <input className="start-cal" type="text" value={start} onClick={this.showCalendarStart} readOnly />
               <svg className="arrow" viewBox="0 0 24 24"><path d="m0 12.5a.5.5 0 0 0 .5.5h21.79l-6.15 6.15a.5.5 0 1 0 .71.71l7-7v-.01a.5.5 0 0 0 .14-.35.5.5 0 0 0 -.14-.35v-.01l-7-7a .5.5 0 0 0 -.71.71l6.15 6.15h-21.79a.5.5 0 0 0 -.5.5z"></path></svg>
               <input className="end-cal" type="text" value={end} onClick={this.showCalendarEnd} readOnly />
-            </div> 
+            </div>
             </div>
           </div>
           {this.updateGuestData()}
