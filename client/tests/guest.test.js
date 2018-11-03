@@ -17,7 +17,7 @@ describe('Guest component', () => {
   	const wrapper = shallow(<Guest max={4} />);
   	wrapper.find('.guest-bar').simulate('click');
 
-  	expect(wrapper.find('.dropdown').exists()).toBe(true);
+  	expect(wrapper.state('drop')).toBe(true);
   });
 
   test("increment adult count", () => {
