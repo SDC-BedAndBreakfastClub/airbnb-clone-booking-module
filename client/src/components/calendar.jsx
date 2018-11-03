@@ -131,9 +131,9 @@ class Calendar extends React.Component {
       let week = [];
       for (let i = 0; i < 7; i += 1) {
         if (dateFns.getMonth(dateFns.format(dateFns.addDays(day, i), 'MM/DD/YYYY')) === thisMonth) {
-          week.push(<div key={`${day} ${i}`}className="day dates" value={dateFns.format(dateFns.addDays(day, i), 'MM/DD/YYYY')} onClick={(e) => this.handleCalendarClick(e)}>{dateFns.format(dateFns.addDays(day, i), 'D')}</div>);
+          week.push(<div key={`${day} ${i}`} className={`day dates ${dateFns.format(dateFns.addDays(day, i), 'DD')}`} value={dateFns.format(dateFns.addDays(day, i), 'MM/DD/YYYY')} onClick={e => this.handleCalendarClick(e)}>{dateFns.format(dateFns.addDays(day, i), 'D')}</div>);
         } else {
-          week.push(<div key={`${day} ${i}`}className="day not-dates"></div>);
+          week.push(<div key={`${day} ${i}`} className="day not-dates"></div>);
         }
       }
       day = dateFns.addDays(day, 7);
@@ -156,11 +156,11 @@ class Calendar extends React.Component {
             <div className="calendar-header">
               <div className="month-control">
                 <div>
-                  <a className="change-month" onClick={() => this.prevMonth()}>&laquo; </a>
+                  <a className="change-month prev" onClick={() => this.prevMonth()}>&laquo; </a>
                 </div>
                 {this.renderHeader()}
                 <div>
-                  <a className="change-month" onClick={() => this.nextMonth()}> &raquo;</a>
+                  <a className="change-month next" onClick={() => this.nextMonth()}> &raquo;</a>
                 </div>
               </div>
             </div>
