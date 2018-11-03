@@ -96,7 +96,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.handleGetRequest();
+    const { match } = this.props;
+    console.log(match.params.id);
+    this.handleGetRequest(match.params.id);
   }
 
   handleStartDate(event) {
@@ -113,7 +115,7 @@ class App extends React.Component {
     });
   }
 
-  handleGetRequest(id = '5bd91f697190430ef5e5a400') {
+  handleGetRequest(id = Math.floor(Math.random * 100)) {
     $.ajax({
       method: 'GET',
       url: `/api/rooms/${id}/booking`,
