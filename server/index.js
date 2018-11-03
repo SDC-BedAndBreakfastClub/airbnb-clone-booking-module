@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const location = require('../database/location.js');
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3004;
@@ -19,11 +20,7 @@ app.get('/api/rooms/:listingId/booking', (req, res) => {
 
 app.get('/rooms/:listingId/booking', (req, res) => {
   const options = {
-    root: '/Users/jaybee/Desktop/gc/projects/fec/airbnb-clone-booking-module/client/dist/',
+    root: path.join(__dirname, '..', 'client/dist/'),
   };
-
-  // res.set('Content-Type', 'text/html');
-  //res.send(new Buffer('<h2>Test String</h2>'));
   res.sendFile('index.html', options);
-  //res.end('hello');
 });
