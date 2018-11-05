@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import dateFns from 'date-fns';
 
 const Wrapper = styled.div`
   font-family: 'Montserrat', sans-serif;
@@ -32,8 +33,8 @@ const Wrapper = styled.div`
   }
   .dropdown {
     box-sizing: content-box;   
-    width: 200px;
-    height: 150px;
+    width: 210px;
+    height: 170px;
     padding: 30px;    
     border: 1px solid #e4e4e4;
     right: 20%;
@@ -44,6 +45,7 @@ const Wrapper = styled.div`
   }
   .guest-bar {
     border: 0px;
+    z-index: 1;
   }
   .guest-display {
     border: 1px solid #e4e4e4;
@@ -56,11 +58,36 @@ const Wrapper = styled.div`
   .guest-label {
     padding-top: 5px;
     padding-bottom: 5px;
+    z-index: 1;
   }
   .guest-type {
     display: grid;
     grid-template-columns: 100px auto auto auto;
     padding-bottom: 10px;
+  }
+  .price-table {
+    padding-top: 10px;
+  }
+  .fee-field {
+    display: table;
+    width: 100%;
+    border-spacing: 0px;
+  }
+  .fee {
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle;
+  }
+  .amount {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .bottom-border {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  .border {
+    border-bottom: 1px solid #e4e4e4
   }
 `;
 
@@ -74,6 +101,7 @@ class Guest extends React.Component {
       children: 0,
       infants: 0,
       total: 1,
+      updated: false,
     };
 
     this.handleDropMenu = this.handleDropMenu.bind(this);
@@ -100,6 +128,7 @@ class Guest extends React.Component {
       this.setState(prevState => ({
         adults: prevState.adults + 1,
         total: prevState.total + 1,
+        updated: true,
       }));
     }
   }
@@ -110,6 +139,7 @@ class Guest extends React.Component {
       this.setState(prevState => ({
         adults: prevState.adults - 1,
         total: prevState.total - 1,
+        updated: true,
       }));
     }
   }
@@ -120,6 +150,7 @@ class Guest extends React.Component {
       this.setState(prevState => ({
         children: prevState.children + 1,
         total: prevState.total + 1,
+        updated: true,
       }));
     }
   }
@@ -130,6 +161,7 @@ class Guest extends React.Component {
       this.setState(prevState => ({
         children: prevState.children - 1,
         total: prevState.total - 1,
+        updated: true,
       }));
     }
   }
@@ -140,6 +172,7 @@ class Guest extends React.Component {
       this.setState(prevState => ({
         infants: prevState.infants + 1,
         total: prevState.total + 1,
+        updated: true,
       }));
     }
   }
@@ -150,7 +183,66 @@ class Guest extends React.Component {
       this.setState(prevState => ({
         infants: prevState.infants - 1,
         total: prevState.total - 1,
+        updated: true,
       }));
+    }
+  }
+
+  renderPriceSummary() {
+    const { start, end, data } = this.props;
+    const { drop } = this.state;
+    if (drop === false && start !== 'Check In' && end !== 'Check Out') {
+      return (
+        <div className="price-table">
+          <div>
+            <div className="total fee-field">
+              <div className="fee per-day">
+                <small><b>{`$${data.pricing} x ${dateFns.differenceInCalendarDays(end, start)} nights`}</b></small>
+              </div>
+              <div className="amount">
+                <small>${data.pricing * dateFns.differenceInCalendarDays(end, start)}</small>
+              </div>
+            </div>
+            <div className="bottom-border">
+              <div className="border"></div>
+            </div>
+          </div>
+          <div>
+            <div className="cleaning fee-field">
+              <div className="fee cleaning">
+                <small><b>{`Cleaning fee`}</b></small>
+              </div>
+              <div className="amount">
+                <small>${data.cleaning_fee}</small>
+              </div>
+            </div>
+            <div className="bottom-border">
+              <div className="border"></div>
+            </div>
+          </div>
+          <div>
+            <div className="service fee-field">
+              <div className="fee service">
+                <small><b>{`Service fee`}</b></small>
+              </div>
+              <div className="amount">
+                <small>${data.service_fee}</small>
+              </div>
+            </div>
+            <div className="bottom-border">
+              <div className="border"></div>
+            </div>
+            <div className="fee-field">
+              <div className="fee total">
+                <small><b>Total</b></small>
+              </div>
+              <div className="amount">
+                <small>${data.pricing * dateFns.differenceInCalendarDays(end, start) + data.cleaning_fee + data.service_fee}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
     }
   }
 
@@ -168,6 +260,7 @@ class Guest extends React.Component {
 
   render() {
     const { drop, adults, children, infants } = this.state;
+    const { data, max } = this.props;
 
     return (
         <Wrapper>
@@ -227,7 +320,11 @@ class Guest extends React.Component {
                     <input className="button-plus" value="+" type="button" onClick={() => this.handleInfantIncrement()} />
                   </div>
                 </div>
+                <div>
+                  <span>{max === 1 ? `${max} guest maximum. Infants don't count toward the number of guests.` : `${max} guests maximum. Infants don't count toward the number of guests.`}</span>
+                </div>
               </div>) : null }
+              {data && this.renderPriceSummary()}
               {!drop ? (<input className="booking-button" value="Book" type="button" />) : null}
             </div>
           </div>

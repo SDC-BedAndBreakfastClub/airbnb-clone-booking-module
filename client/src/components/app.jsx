@@ -13,7 +13,7 @@ const Wrapper = styled.section`
   .booking-module {
     box-sizing: content-box;    
     width: 300px;
-    height: 400px;
+    height: 450px;
     padding: 30px;    
     border: 1px solid #e4e4e4;
     margin-right: 16px;
@@ -74,6 +74,9 @@ const Wrapper = styled.section`
   .dates-label {
     padding-bottom: 5px;
   }
+  .modal {
+    z-index: 99;
+  }
   
 `;
 
@@ -97,7 +100,6 @@ class App extends React.Component {
 
   componentDidMount() {
     const { match } = this.props;
-    console.log(match.params.id);
     this.handleGetRequest(match.params.id);
   }
 
@@ -187,7 +189,7 @@ class App extends React.Component {
   }
 
   updateGuestData() {
-    const { data } = this.state;
+    const { data, start, end } = this.state;
 
     if (!data) {
       return (
@@ -195,7 +197,7 @@ class App extends React.Component {
       );
     }
     return (
-      <Guest max={data[0].max_guests} />
+      <Guest data={data[0]} start={start} end={end} max={data[0].max_guests} />
     );
   }
 
@@ -231,15 +233,17 @@ class App extends React.Component {
               </label>
             </div>
             <div>
-            <div>
-              <Calendar show={showCalStart} getDate={this.handleStartDate} />
-              <Calendar show={showCalEnd} getDate={this.handleEndDate} />
+              <div className="modal cal-start">
+                <Calendar show={showCalStart} getDate={this.handleStartDate} />
+              </div>
+              <div className="modal cal-end">
+                <Calendar show={showCalEnd} getDate={this.handleEndDate} />
+              </div>
             </div>
             <div className="input-calendar">
               <input className="start-cal" type="text" value={start} onClick={this.showCalendarStart} readOnly />
               <svg className="arrow" viewBox="0 0 24 24"><path d="m0 12.5a.5.5 0 0 0 .5.5h21.79l-6.15 6.15a.5.5 0 1 0 .71.71l7-7v-.01a.5.5 0 0 0 .14-.35.5.5 0 0 0 -.14-.35v-.01l-7-7a .5.5 0 0 0 -.71.71l6.15 6.15h-21.79a.5.5 0 0 0 -.5.5z"></path></svg>
               <input className="end-cal" type="text" value={end} onClick={this.showCalendarEnd} readOnly />
-            </div>
             </div>
           </div>
           {this.updateGuestData()}
