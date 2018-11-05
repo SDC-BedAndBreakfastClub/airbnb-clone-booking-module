@@ -7,6 +7,8 @@ const locationSchema = new mongoose.Schema({
   average_review: Number,
   total_reviews: Number,
   max_guests: Number,
+  cleaning_fee: Number,
+  service_fee: Number,
 });
 
 module.exports = connection.model('Listing', locationSchema);

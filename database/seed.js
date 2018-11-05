@@ -3,19 +3,19 @@ const location = require('./Location.js');
 
 const db = require('./index.js');
 
+location.deleteMany({}, () => {});
+
 const fakeDataset = [];
 
-fakeDataset.push({
-  _id: '5bd91f697190430ef5e5a400', id: 0, pricing: 200, average_review: 3.5, total_reviews: 145, max_guests: 4,
-});
-
-for (let i = 1; i < 100; i += 1) {
+for (let i = 0; i < 100; i += 1) {
   const mockData = {
     id: i,
     pricing: faker.commerce.price(),
     average_review: (Math.random() * 5),
     total_reviews: (Math.floor(Math.random() * 200)),
     max_guests: (Math.floor(Math.random() * 6)),
+    cleaning_fee: (Math.floor(Math.random() * 50)),
+    service_fee: (Math.floor(Math.random() * 50)),
   };
   fakeDataset.push(mockData);
 }
