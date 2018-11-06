@@ -11,12 +11,16 @@ const Wrapper = styled.section`
     transition: height 0.2s ease-in-out 0s !important;
   }
   .calendar {
+    background: white;
+    display: flex;
+    flex-direction: column;
     position: fixed;
-    width: 20%;
+    width: 223px;
     height: auto;
     top:60%;
     left:20%;
     transform: translate(-50%,-50%);
+    border: 1px solid rgba(0, 0, 0, 0.8);
   }
   .display-block {
     display: block;
@@ -26,8 +30,8 @@ const Wrapper = styled.section`
   }
   .calendar-header {
     display: flex;
-    align-items: center;
-    width: 50%;
+    width: 100%;
+    justify-content: space-around;
   }
   .month {
     display: inline-grid;
@@ -39,19 +43,20 @@ const Wrapper = styled.section`
     padding: 10px;
     font-size: 8px;
     text-align: center;
+    width: 10px;
   }
   .names {
    background-color: white;
   }
   .dates {
     cursor: pointer;
-    width: 16px;
+    width: 10px;
   }
   .dates:hover {
     background-color: yellow;
   }
   .not-dates {
-    width: 16px;
+    width: 10px;
   }
   .change-month {
     cursor: pointer;
