@@ -73,4 +73,8 @@ describe('Guest component', () => {
 
   	expect(wrapper.find('.guest-bar').props().value).toEqual('1 guest');
   });
+
+  test("show booking total fees when all forms are filled", () => {
+    
+  })
 });

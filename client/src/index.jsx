@@ -1,5 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/app.jsx';
+import Booking from './components/app.jsx';
 
-ReactDOM.render(<App />, document.getElementById('booking'));
+window.Booking = Booking;
