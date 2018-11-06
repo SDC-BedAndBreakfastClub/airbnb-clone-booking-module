@@ -80,7 +80,7 @@ const Wrapper = styled.section`
   
 `;
 
-class App extends React.Component {
+class Booking extends React.Component {
   constructor(props) {
     super(props);
 
@@ -99,8 +99,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const { match } = this.props;
-    this.handleGetRequest(match.params.id);
+    this.handleGetRequest();
   }
 
   handleStartDate(event) {
@@ -253,4 +252,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Booking;

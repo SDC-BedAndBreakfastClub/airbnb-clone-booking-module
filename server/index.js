@@ -1,13 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const location = require('../database/location.js');
 const path = require('path');
+const cors = require('cors');
+const location = require('../database/location.js');
+
 
 const app = express();
 const port = process.env.PORT || 3004;
 
 app.use(express.static('client/dist'));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
