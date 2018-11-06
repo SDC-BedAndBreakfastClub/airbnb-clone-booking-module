@@ -1,11 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/app.jsx';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Booking from './components/app.jsx';
 
-ReactDOM.render(
-  <Router>
-    <Route path="/rooms/:id/booking" component={App} />
-  </Router>,
-  document.getElementById('booking'),
-);
+window.Booking = Booking;
