@@ -7,7 +7,7 @@ location.deleteMany({}, () => {});
 
 const fakeDataset = [];
 
-for (let i = 0; i < 100; i += 1) {
+for (let i = 1; i <= 100; i += 1) {
   const mockData = {
     id: i,
     pricing: faker.commerce.price(),
