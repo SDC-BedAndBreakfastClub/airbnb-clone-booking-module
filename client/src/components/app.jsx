@@ -99,7 +99,8 @@ class Booking extends React.Component {
   }
 
   componentDidMount() {
-    this.handleGetRequest();
+    const id = (window.location.pathname).split('/')[2];
+    this.handleGetRequest(id);
   }
 
   handleStartDate(event) {
@@ -116,12 +117,12 @@ class Booking extends React.Component {
     });
   }
 
-  handleGetRequest(id = Math.floor(Math.random * 100)) {
+  handleGetRequest(id = Math.floor(Math.random() * 100)) {
     $.ajax({
       method: 'GET',
       url: `/api/rooms/${id}/booking`,
       contentType: 'application/json',
-      success: data => this.setState({ data: data }),
+      success: data => this.setState({ data }),
       error: err => console.error('error ', err),
     });
   }
