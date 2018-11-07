@@ -5,8 +5,7 @@ import styled from 'styled-components';
 const Wrapper = styled.section`
   font-family: 'Montserrat', sans-serif;
   .modal {
-    position: relative !important;
-    overflow: hidden !important;
+    position: absolute !important;
     border-radius: 3px !important;
     transition: height 0.2s ease-in-out 0s !important;
   }
