@@ -1,3 +1,7 @@
 import Booking from './components/app.jsx';
+import React from 'react';
+import { render } from 'react-dom';
 
-window.Booking = Booking;
+render(<Booking />, document.getElementById('bookings'));
+
+// window.Booking = Booking;
