@@ -120,7 +120,7 @@ class Booking extends React.Component {
   handleGetRequest(id = Math.ceil(Math.random() * 100)) {
     $.ajax({
       method: 'GET',
-      url: `http://34.220.178.216/api/rooms/${id}/booking`,
+      url: `/api/rooms/${id}/booking`,
       contentType: 'application/json',
       success: data => this.setState({ data }),
       error: err => console.error('error ', err),
@@ -190,7 +190,7 @@ class Booking extends React.Component {
 
   updateGuestData() {
     const { data, start, end } = this.state;
-
+    console.log("DATA", data);
     if (!data) {
       return (
         <Guest />
