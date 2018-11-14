@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const connection = require('./index.js');
 
 const bookingSchema = new mongoose.Schema({
   id: Number,
@@ -9,4 +10,4 @@ const bookingSchema = new mongoose.Schema({
   user: String,
 });
 
-exports.Booking = mongoose.model('Booking', bookingSchema);
+module.exports = connection.model('Reservation', bookingSchema);
