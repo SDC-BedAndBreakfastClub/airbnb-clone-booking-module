@@ -15,8 +15,12 @@ app.use(cors());
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.get('/api/rooms/:listingId/booking', (req, res) => {
-  location.find({ id: req.params.listingId })
+  console.log('PARAMS', req.params);
+  console.log('BODY', req.body);
+  location.find({ id: Number(req.params.listingId) })
     .exec((error, results) => {
+      console.log(error);
+      console.log(results);
       res.send(results);
     });
 });
