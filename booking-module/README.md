@@ -22,7 +22,7 @@ API routes:
   GET /api/rooms/:listingId/listingdetails
     returns info about room: {id, pricing, average_review, total_reviews, max_guests, cleaning_fee, service_fee}
   GET /api/rooms/:listingId/booking
-    returns array of bookings for the room identified by listingId
+    returns array of bookings for the room identified by listingId, see immediately below for shape
   POST /api/rooms/:listingId/booking
     creates a booking. Takes a request body with {
       id: the listing id, same as in url params,
