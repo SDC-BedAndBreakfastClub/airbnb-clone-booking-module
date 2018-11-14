@@ -9,7 +9,7 @@
   "scripts": {
     "test": "jest --coverage",
     "start": "node server/index.js",
-    "react-dev": "webpack-dev-server --open --config webpack.dev.js",
+    "react-dev": "webpack --watch --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "seed": "node database/seed.js"
   },
@@ -39,7 +39,6 @@
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
     "body-parser": "^1.18.3",
-    "clean-webpack-plugin": "^0.1.19",
     "cors": "^2.8.5",
     "css-loader": "^1.0.1",
     "enzyme": "^3.7.0",
