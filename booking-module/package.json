@@ -9,7 +9,7 @@
   "scripts": {
     "test": "jest --coverage",
     "start": "node server/index.js",
-    "react-dev": "webpack --config webpack.dev.js",
+    "react-dev": "webpack --watch --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "seed": "node database/seed.js"
   },
