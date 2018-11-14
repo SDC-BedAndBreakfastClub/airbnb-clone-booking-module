@@ -12,7 +12,7 @@
 
 ## Usage
 
-> From the root directory:
+> From the booking-module directory:
 ```sh
 npm run build
 npm start
