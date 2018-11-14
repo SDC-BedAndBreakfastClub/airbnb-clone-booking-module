@@ -2,7 +2,7 @@
 
 ## Related Projects
 - https://github.com/BedandBreakfastClub/airbnb-clone-reviews-module
-- https://github.com/BedandBreakfastClub/airbnb-clone-photos-module
+- https://github.com/BedandBreakfastClub/airbnb-clone-photo-module
 - https://github.com/BedandBreakfastClub/airbnb-clone-similar-listings-module
 
 ## Table of Contents
