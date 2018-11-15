@@ -18,6 +18,7 @@ npm run build
 npm start
 ```
 
+```sh
 API routes:
   GET /api/rooms/:listingId/listingdetails
     returns info about room: {id, pricing, average_review, total_reviews, max_guests, cleaning_fee, service_fee}
@@ -36,6 +37,7 @@ API routes:
     updates a booking. takes a bookingId which is the `_id` returned from creating the booking, plus all the other same fields as a POST
   DELETE /api/rooms/:listingId/booking
    deletes a booking. looks up booking by bookingId which is the `_id` returned from creating the booking.
+```
 
 ## Requirements
 
