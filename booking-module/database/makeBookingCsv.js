@@ -16,8 +16,9 @@ const createBooking = (idx, listingId, name) => {
   const stayLength = Math.floor(Math.random() * 6) + 1;
   const checkOut = moment(checkIn).add(stayLength, 'days').format('YYYY-MM-DD');
   const guests = Math.floor(Math.random() * 6) + 1;
-  const user = faker.name.findName();
-  return `"${idx}","${listingId}","${name}","${checkIn}","${checkOut}","${guests}","${user}"\n`;
+  const userName = faker.name.findName();
+  const userId = 500000000 - idx;
+  return `"${idx}","${listingId}","${name}","${checkIn}","${checkOut}","${guests}","${userName}","${userId}"\n`;
 };
 
 class BookingsGenerator extends Transform {
@@ -62,6 +63,6 @@ class BookingsGenerator extends Transform {
 
 const bookingsGenerator = new BookingsGenerator();
 
-bookings.write('"id","listingId","listingName","checkIn","checkOut","guests","user"\n');
+bookings.write('"id","listingId","listingName","checkIn","checkOut","guests","userName","userId"\n');
 
 listings.pipe(bookingsGenerator).pipe(bookings);
