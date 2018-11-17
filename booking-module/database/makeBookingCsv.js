@@ -18,7 +18,7 @@ const createBooking = (idx, listingId, name) => {
   const guests = Math.floor(Math.random() * 6) + 1;
   const userName = faker.name.findName();
   const userId = 500000000 - idx;
-  return `"${idx}","${listingId}","${name}","${checkIn}","${checkOut}","${guests}","${userName}","${userId}"\n`;
+  return `"${idx}",${listingId},${name},"${checkIn}","${checkOut}","${guests}","${userName}","${userId}"\n`;
 };
 
 class BookingsGenerator extends Transform {
