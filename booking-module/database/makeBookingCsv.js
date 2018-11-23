@@ -5,11 +5,16 @@ const { Transform } = require('stream');
 
 // const { createInterface } = require('readline');
 
+const start = Date.now();
+
+let end;
+
 const listings = fs.createReadStream('./listings.csv');
 
 const bookings = fs.createWriteStream('./bookings.csv');
 
 // const lineReader = createInterface({ input: listings });
+// noSQL version with dup data
 
 const createBooking = (idx, listingId, name) => {
   const checkIn = moment(faker.date.between('2018-06-01', '2019-06-01')).format('YYYY-MM-DD');
@@ -18,8 +23,9 @@ const createBooking = (idx, listingId, name) => {
   const guests = Math.floor(Math.random() * 6) + 1;
   const userName = faker.name.findName();
   const userId = 500000000 - idx;
-  return `"${idx}",${listingId},${name},"${checkIn}","${checkOut}","${guests}","${userName}","${userId}"\n`;
+  return `"${idx}",${listingId}","${name}","${checkIn}","${checkOut}","${guests}","${userName}","${userId}"\n`;
 };
+
 
 class BookingsGenerator extends Transform {
   constructor(options) {
@@ -29,11 +35,13 @@ class BookingsGenerator extends Transform {
   }
 
   _transform(chunk, enc, cb) {
+    console.clear();
+    console.log(`${this.idx} records written!`);
     const lines = (this.cache + chunk.toString()).split('\n');
     this.cache = lines.pop();
     lines.forEach((line) => {
-      const [listingId, , name] = line.split(',');
-      if (listingId === '"id"') {
+      const [listingId, , name] = line.split('","');
+      if (listingId === '"id') {
         console.log('HIIII');
         return;
       }
@@ -64,5 +72,64 @@ class BookingsGenerator extends Transform {
 const bookingsGenerator = new BookingsGenerator();
 
 bookings.write('"id","listingId","listingName","checkIn","checkOut","guests","userName","userId"\n');
+
+
+// SQL version with no dup data
+/*
+const createBooking = (idx, listingId, name) => {
+  const checkIn = moment(faker.date.between('2018-06-01', '2019-06-01')).format('YYYY-MM-DD');
+  const stayLength = Math.floor(Math.random() * 6) + 1;
+  const checkOut = moment(checkIn).add(stayLength, 'days').format('YYYY-MM-DD');
+  const guests = Math.floor(Math.random() * 6) + 1;
+  const userName = faker.name.findName();
+  const userId = 500000000 - idx;
+  return `"${idx}",${listingId}","${checkIn}","${checkOut}","${guests}","${userName}","${userId}"\n`;
+};
+
+class BookingsGenerator extends Transform {
+  constructor(options) {
+    super(options);
+    this.cache = '';
+    this.idx = 1;
+  }
+
+  _transform(chunk, enc, cb) {
+    const lines = (this.cache + chunk.toString()).split('\n');
+    this.cache = lines.pop();
+    lines.forEach((line) => {
+      const [listingId, , name] = line.split('","');
+      if (listingId === '"id') {
+        console.log('HIIII');
+        return;
+      }
+      const numBookings = Math.floor(Math.random() * 20);
+      for (let idx = 0; idx <= numBookings; idx += 1) {
+        const output = createBooking(this.idx, listingId, name);
+        this.idx += 1;
+        this.push(output);
+      }
+    });
+    cb();
+  }
+
+  _flush(cb) {
+    if (this.cache.length) {
+      const [listingId, , name] = this.cache.split(',');
+      const numBookings = Math.floor(Math.random() * 20);
+      for (let idx = 0; idx < numBookings; idx += 1) {
+        const output = createBooking(this.idx, listingId, name);
+        this.idx += 1;
+        this.push(output);
+      }
+    }
+    end = Date.now();
+    cb();
+    console.log(moment.duration(end - start).asMinutes());
+  }
+}
+
+const bookingsGenerator = new BookingsGenerator();
+*/
+// bookings.write('"id","listingId","checkIn","checkOut","guests","userName","userId"\n');
 
 listings.pipe(bookingsGenerator).pipe(bookings);
