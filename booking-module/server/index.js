@@ -1,33 +1,32 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
-const location = require('../database/Location.js');
-const booking = require('../database/Booking.js');
+const db = require('../database/index.js');
+// const booking = require('../database/Booking.js');
 
 
 const app = express();
 const port = process.env.PORT || 3004;
 
 app.use(express.static('client/dist'));
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.get('/api/rooms/:listingId/listingdetails', (req, res) => {
-  location.find({ id: req.params.listingId })
-    .exec((error, results) => {
-      res.status(200).send(results);
-    });
+  db.getListing(req.params.listingId, (err, data) => {
+    if (err) { return res.sendStatus(500); }
+    return res.status(200).json(data);
+  });
 });
 
 app.get('/api/rooms/:listingId/booking', (req, res) => {
-  booking.find({ id: req.params.listingId })
-    .exec((err, results) => {
-      if (err) { return res.sendStatus(500); }
-      return res.status(200).json(results);
-    });
+  db.getBookings(req.params.listingId, (err, data) => {
+    if (err) { return res.sendStatus(500); }
+    return res.status(200).json(data);
+  });
 });
 
 app.get('/rooms/:listingId/booking', (req, res) => {
@@ -39,14 +38,9 @@ app.get('/rooms/:listingId/booking', (req, res) => {
 
 app.post('/api/rooms/:listingId/booking', (req, res) => {
   const { body } = req;
+  body.listing_id = req.params.listingId;
   console.log(body);
-  booking.create({
-    id: req.params.listingId,
-    check_in: body.check_in,
-    check_out: body.check_out,
-    booking_location: body.booking_location,
-    user: body.user,
-  }, (err, data) => {
+  db.createBooking(body, (err, data) => {
     if (err) { return res.sendStatus(500); }
     return res.status(201).json(data);
   });
@@ -54,12 +48,7 @@ app.post('/api/rooms/:listingId/booking', (req, res) => {
 
 app.patch('/api/rooms/:listingId/booking', (req, res) => {
   const { body } = req;
-  booking.findByIdAndUpdate(body.bookingId, {
-    check_in: body.check_in,
-    check_out: body.check_out,
-    booking_location: body.booking_location,
-    user: body.user,
-  }, (err, data) => {
+  db.updateBooking(body, (err, data) => {
     if (err) { return res.sendStatus(500); }
     return res.status(209).json(data);
   });
@@ -67,7 +56,7 @@ app.patch('/api/rooms/:listingId/booking', (req, res) => {
 
 app.delete('/api/rooms/:listingId/booking', (req, res) => {
   const { body } = req;
-  booking.findByIdAndDelete(body.bookingId, (err) => {
+  db.deleteBooking(body.id, (err) => {
     if (err) { return res.sendStatus(500); }
     return res.sendStatus(204);
   });
