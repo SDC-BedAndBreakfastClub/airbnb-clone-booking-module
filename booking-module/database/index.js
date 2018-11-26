@@ -12,10 +12,19 @@ const pool = new Pool({
   host: 'localhost',
 });
 
+const numberifyPrice = price => Number(price.slice(1));
+
 exports.getListing = (id, cb) => {
   const queryStr = 'SELECT * FROM listings WHERE id = $1';
   pool.query(queryStr, [id])
-    .then(({ rows }) => cb(null, rows))
+    .then(({ rows }) => {
+      const data = Object.assign({}, rows[0], {
+        pricing: numberifyPrice(rows[0].pricing),
+        cleaning_fee: numberifyPrice(rows[0].cleaning_fee),
+        service_fee: numberifyPrice(rows[0].service_fee),
+      });
+      cb(null, [data]);
+    })
     .catch(err => cb(err));
 };
 
