@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 // const bodyParser = require('body-parser');
 const path = require('path');
@@ -18,6 +19,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.get('/api/rooms/:listingId/listingdetails', (req, res) => {
   db.getListing(req.params.listingId, (err, data) => {
     if (err) { return res.sendStatus(500); }
+    console.log(data);
     return res.status(200).json(data);
   });
 });
