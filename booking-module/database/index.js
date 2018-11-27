@@ -63,4 +63,4 @@ exports.deleteBooking = (id, cb) => {
   pool.query(queryStr, [id])
     .then(({ rows }) => cb(null, rows))
     .catch(err => cb(err));
-}
+};
