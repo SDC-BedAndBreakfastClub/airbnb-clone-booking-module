@@ -5,7 +5,6 @@
 npm
 npm-debug.log
 node_modules/
-newrelic.js
 
 #fake data
 bookings.csv
