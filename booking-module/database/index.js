@@ -7,10 +7,8 @@
 
 const { Pool } = require('pg');
 
-const pool = new Pool({
-  database: 'bnb',
-  host: 'localhost',
-});
+// use environment variables for db config
+const pool = new Pool();
 
 exports.getListing = (id, cb) => {
   const queryStr = 'SELECT * FROM listings WHERE id = $1';
