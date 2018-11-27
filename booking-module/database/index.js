@@ -5,7 +5,10 @@
 
 // module.exports = db;
 
-const { Pool } = require('pg');
+const { Pool, types } = require('pg');
+
+// takes db entries of type numeric, and casts them to numbers (otherwise, they'd be strings)
+types.setTypeParser(1700, value => Number(value));
 
 // use environment variables for db config
 const pool = new Pool();
