@@ -1,10 +1,8 @@
 require('newrelic');
 const express = require('express');
-// const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 const db = require('../database/index.js');
-// const booking = require('../database/Booking.js');
 
 
 const app = express();
@@ -19,7 +17,6 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.get('/api/rooms/:listingId/listingdetails', (req, res) => {
   db.getListing(req.params.listingId, (err, data) => {
     if (err) { return res.sendStatus(500); }
-    console.log(data);
     return res.status(200).json(data);
   });
 });

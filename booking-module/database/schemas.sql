@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS listings (
   id SERIAL PRIMARY KEY,
-  price money,
+  pricing money,
   name varchar(140),
   average_review numeric,
   total_reviews integer,
@@ -19,20 +19,5 @@ CREATE TABLE IF NOT EXISTS bookings (
   user_id integer
 );
 
-/*CREATE TABLE IF NOT EXISTS temp (
-  id integer,
-  listingId integer,
-  listingName varchar(140),
-  checkIn date,
-  checkOut date,
-  guests integer,
-  userName varchar(50),
-  userId integer
-);*/
 
-
-
--- CREATE INDEX listings_name ON bookings (listingName);
-
--- COPY listings FROM '/Users/aaroncohn/Documents/SDC/airbnb-clone-booking-module/booking-module/database/listings.csv' WITH (FORMAT csv, HEADER true);
 
