@@ -120,7 +120,7 @@ class Booking extends React.Component {
   handleGetRequest(id = Math.ceil(Math.random() * 100)) {
     $.ajax({
       method: 'GET',
-      url: `ec2-18-224-71-201.us-east-2.compute.amazonaws.com/api/rooms/${id}/listingdetails`,
+      url: `http://ec2-18-224-71-201.us-east-2.compute.amazonaws.com/api/rooms/${id}/listingdetails`,
       contentType: 'application/json',
       success: data => this.setState({ data }),
       error: err => console.error('error ', err),
