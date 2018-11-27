@@ -1,9 +1,8 @@
+require('newrelic');
 const express = require('express');
-// const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 const db = require('../database/index.js');
-// const booking = require('../database/Booking.js');
 
 
 const app = express();

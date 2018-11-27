@@ -15,7 +15,9 @@ const pool = new Pool({
 exports.getListing = (id, cb) => {
   const queryStr = 'SELECT * FROM listings WHERE id = $1';
   pool.query(queryStr, [id])
-    .then(({ rows }) => cb(null, rows))
+    .then(({ rows }) => {
+      cb(null, rows);
+    })
     .catch(err => cb(err));
 };
 
@@ -61,4 +63,4 @@ exports.deleteBooking = (id, cb) => {
   pool.query(queryStr, [id])
     .then(({ rows }) => cb(null, rows))
     .catch(err => cb(err));
-}
+};
