@@ -6,7 +6,7 @@ const db = require('../database/index.js');
 
 
 const app = express();
-const port = process.env.PORT || 3004;
+const port = 80;
 
 app.use(express.static('client/dist'));
 app.use(express.json());
@@ -16,7 +16,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.get('/api/rooms/:listingId/listingdetails', (req, res) => {
   db.getListing(req.params.listingId, (err, data) => {
-    if (err) { return res.sendStatus(500); }
+    if (err) { console.log(err); return res.sendStatus(500); }
     return res.status(200).json(data);
   });
 });
