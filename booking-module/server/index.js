@@ -18,7 +18,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.get('/api/rooms/:listingId/listingdetails', (req, res) => {
   cache.get(`listing:${req.params.listingId}`, (err, json) => {
     if (json) {
-      return res.status(200).send(json);
+      return res.status(200).set('Content-Type', 'application/json').send(json);
     }
     db.getListing(req.params.listingId, (dbErr, data) => {
       if (dbErr) { console.log(err); return res.sendStatus(500); }
@@ -31,7 +31,7 @@ app.get('/api/rooms/:listingId/listingdetails', (req, res) => {
 app.get('/api/rooms/:listingId/booking', (req, res) => {
   cache.get(`booking:${req.params.listingId}`, (err, json) => {
     if (json) {
-      return res.status(200).send(json);
+      return res.status(200).set('Content-Type', 'application/json').send(json);
     }
     db.getBookings(req.params.listingId, (dbErr, data) => {
       if (dbErr) { return res.sendStatus(500); }
